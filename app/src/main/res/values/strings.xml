@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">InzynierkaMVC</string>
+    <string name="title_activity_main_manu">MainManuActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_exercise">ExerciseActivity</string>
+    <string name="title_activity_correct_answer">CorrectAnswerActivity</string>
+</resources>
