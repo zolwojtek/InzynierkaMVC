@@ -24,9 +24,9 @@ public class MainManuActivity extends Activity implements FView<GameModel> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_manu);
 
-        partsOfSpeech = new String[2];
+        /*partsOfSpeech = new String[2];
         partsOfSpeech[0] = "czasowniki";
-        partsOfSpeech[1] = "rzeczowniki";
+        partsOfSpeech[1] = "rzeczowniki";*/
 
         LinearLayout buttonsLayout = (LinearLayout) findViewById(R.id.buttonsLayout);
         buttonsLayout.setOrientation(LinearLayout.VERTICAL);
@@ -39,17 +39,17 @@ public class MainManuActivity extends Activity implements FView<GameModel> {
             }
         };
 
-        int numberOfButtons = partsOfSpeech.length;
-        for(int i = 0; i < numberOfButtons; i++) {
+        //int numberOfButtons = partsOfSpeech.length;
+        //for(int i = 0; i < numberOfButtons; i++) {
             Button button = new Button(getApplicationContext());
             button.setBackgroundColor(Color.BLACK);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(0, 0, 0, 20);
-            button.setText(partsOfSpeech[i]);
-            button.setId(i);
+            button.setText("Start");
+            button.setId(0);
             buttonsLayout.addView(button, layoutParams);
             button.setOnClickListener(buttonListener);
-        }
+        //}
 
     }
 

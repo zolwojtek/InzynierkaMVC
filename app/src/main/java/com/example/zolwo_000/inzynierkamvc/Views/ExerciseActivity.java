@@ -46,11 +46,16 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
 
     private void start() {
         ExerciseInitializeParameters exerciseParams = new ExerciseInitializeParameters();
+
+
         GameController gameController = GameApplication.getGameController();
 
         GameModel gameModel = GameApplication.getGameModel();
+
         gameModel.addView(this);
         gameModel.setActivity(this);
+
+
         gameModel.addCategories();
 
         gameController.initializeExercise(exerciseParams);
