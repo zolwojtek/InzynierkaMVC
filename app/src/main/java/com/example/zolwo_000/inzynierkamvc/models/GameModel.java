@@ -1,8 +1,10 @@
 package com.example.zolwo_000.inzynierkamvc.models;
 
 import android.app.Activity;
+import android.database.Cursor;
 
 import com.example.zolwo_000.inzynierkamvc.Controllers.CategoryController;
+import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.Views.FView;
 
@@ -72,15 +74,45 @@ public class GameModel extends FModel<FView> {
     }
 
     public void addCategories() {
-        List<List<CategoryModel>> allCatogories = new ArrayList<>();
+        List<List<CategoryModel>> allCategories = new ArrayList<>();
         List<CategoryModel> categoriesToLearn = new ArrayList<>();
         List<CategoryModel> nouns = new ArrayList<>();
 
         CategoryController categoryController = GameApplication.getCategoryController();
 
-        ArrayList<PhotoModel>nameList = new ArrayList<>();
+        ArrayList<PhotoModel>nameList;// = new ArrayList<>();
 
-        String base = "lalka";
+        DataBaseController dataBaseController = new DataBaseController();
+        dataBaseController.openDataBase();
+
+        Cursor cursorCategories = dataBaseController.loadCategories();
+        Cursor cursorPhotos;
+        String base;
+
+        while(cursorCategories.moveToNext()) {
+            nameList = new ArrayList<>();
+            base = cursorCategories.getString(0);
+            cursorPhotos = dataBaseController.loadPhotosPath(base);
+
+            while(cursorPhotos.moveToNext()) {
+                PhotoModel photo = new PhotoModel(cursorPhotos.getString(0));
+                photo.setImageViewInTable(activity);
+                //photo.setActivity(activity);
+                nameList.add(photo);
+            }
+
+            CategoryModel catTmp = new CategoryModel();
+            catTmp.setName(base);
+            catTmp.setPhotosList(nameList);
+            catTmp.setPhotosNumber(cursorPhotos.getCount());
+
+            categoryController.setRandomPhotoForCategory(catTmp);
+
+            nouns.add(catTmp);
+            categoriesToLearn.add(catTmp);
+        }
+
+/*        String base = "lalka";
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
@@ -264,9 +296,9 @@ public class GameModel extends FModel<FView> {
         cat11.setPhotosList(nameList);
         cat11.setPhotosNumber(6);
         categoryController.setRandomPhotoForCategory(cat11);
-//        cat11.isAccusative = true;
+//        cat11.isAccusative = true;*/
 
-        nouns.add(cat1);
+        /*nouns.add(cat1);
         categoriesToLearn.add(cat1);
         nouns.add(cat2);
         categoriesToLearn.add(cat2);
@@ -287,10 +319,10 @@ public class GameModel extends FModel<FView> {
         nouns.add(cat10);
         categoriesToLearn.add(cat10);
         nouns.add(cat11);
-        categoriesToLearn.add(cat11);
+        categoriesToLearn.add(cat11);*/
 
-        allCatogories.add(nouns);
-        this.partsOfSpeech = allCatogories;
+        allCategories.add(nouns);
+        this.partsOfSpeech = allCategories;
         this.categoriesToLearn = categoriesToLearn;
     }
 }

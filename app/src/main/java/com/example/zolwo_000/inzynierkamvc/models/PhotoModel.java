@@ -3,6 +3,8 @@ package com.example.zolwo_000.inzynierkamvc.models;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Build;
@@ -20,6 +22,10 @@ import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.Views.ExerciseActivity;
 import com.example.zolwo_000.inzynierkamvc.Views.FView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Created by zolwo_000 on 17.11.2015.
@@ -58,9 +64,20 @@ public class PhotoModel extends FModel<FView> {
     }
 
     public void setImageViewInTable(Activity activity){
-        int photoId = activity.getResources().getIdentifier(name, "drawable", activity.getPackageName());
+        //int photoId = activity.getResources().getIdentifier(name, "drawable", activity.getPackageName());
+        File file = new File(name);
+        Bitmap bitmap = null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        try {
+            bitmap = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         imageView = new ImageView(activity);
-        imageView.setImageResource(photoId);
+        //imageView.setImageResource(photoId);
+        imageView.setImageBitmap(bitmap);
         imageView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         imageView.setBackgroundColor(Color.WHITE);
         frameLayout = new FrameLayout(activity);
@@ -69,8 +86,16 @@ public class PhotoModel extends FModel<FView> {
     }
 
     public void setExposedImageView(Activity activity){
-        int photoId = activity.getResources().getIdentifier(name, "drawable", activity.getPackageName());
-
+        //int photoId = activity.getResources().getIdentifier(name, "drawable", activity.getPackageName());
+        File file = new File(name);
+        Bitmap bitmap = null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        try {
+            bitmap = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -84,7 +109,8 @@ public class PhotoModel extends FModel<FView> {
         imageLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         imageView.setLayoutParams(imageLayoutParams);
         imageView.setBackgroundColor(Color.WHITE);
-        imageView.setImageResource(photoId);
+        //imageView.setImageResource(photoId);
+        imageView.setImageBitmap(bitmap);
         layout.addView(imageView);
 
 
