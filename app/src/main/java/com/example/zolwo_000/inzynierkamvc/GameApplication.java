@@ -16,6 +16,7 @@ public class GameApplication extends Application {
     transient private static GameModel gameModel = null;
     transient private static GameController gameController = null;
     transient private static CategoryController categoryController = null;
+    transient private static GameMode gameMode = null;
     transient private static Random random = null;
 
 
@@ -31,6 +32,13 @@ public class GameApplication extends Application {
             gameController = new GameController(getGameModel());
         }
         return gameController;
+    }
+//Finalnie to nie bedzie moglo byc tu, poniewaz to zalezy od ustawien
+    public static GameMode getGameMode() {
+        if (gameMode == null) {
+            gameMode = new TherapistMode();
+        }
+        return gameMode;
     }
 
     public static Random getRandom() {

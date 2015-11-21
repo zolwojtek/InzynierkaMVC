@@ -13,10 +13,13 @@ import android.widget.TableRow;
 
 import com.example.zolwo_000.inzynierkamvc.CategoryType;
 import com.example.zolwo_000.inzynierkamvc.ExerciseInitializeParameters;
+import com.example.zolwo_000.inzynierkamvc.FadeHint;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
+import com.example.zolwo_000.inzynierkamvc.GameMode;
 import com.example.zolwo_000.inzynierkamvc.Hint;
 import com.example.zolwo_000.inzynierkamvc.HintType;
 import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
+import com.example.zolwo_000.inzynierkamvc.TherapistMode;
 import com.example.zolwo_000.inzynierkamvc.Timer;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
@@ -33,20 +36,71 @@ public class GameController extends FController<GameModel> {
         super(gameModel);
     }
 
+    //private GameMode gameMode;
+    private boolean successWithFirstTry;
+    private boolean previousSuccessWithFirstTry;
+    private int triesNumber;
+    private int successesWithFirstTryNumber;
+
     public void initializeExercise(ExerciseInitializeParameters params) {
         //obiekt params powinien byc zapisywany
         int displayedCategoriesNumber = params.getDisplayedCategoriesNumber();
         this.model.setDisplayedPhotosNumber(displayedCategoriesNumber);
 
-        int[] photosOrder = getSimpleOrder(displayedCategoriesNumber);
-        this.model.setPhotosOrder(photosOrder);
+        //int[] photosOrder = getSimpleOrder(displayedCategoriesNumber);
+        //this.model.setPhotosOrder(photosOrder);
         setCategoryToLearn();
         setFakeCategories();
+        triesNumber = 0;
+        successesWithFirstTryNumber = 0;
+        previousSuccessWithFirstTry = true;
 
+
+        //gameMode = new TherapistMode();
     }
 
     public CategoryModel[] getDisplayedCategories() {
         return this.model.getDisplayedCategories();
+    }
+
+    public boolean wasPreviousSuccessWithFirstTry() {
+        return previousSuccessWithFirstTry;
+    }
+
+    public void setPreviousSuccessWithFirstTry(boolean previousSuccessWithFirstTry) {
+        this.previousSuccessWithFirstTry = previousSuccessWithFirstTry;
+    }
+
+    public int getTriesNumber() {
+        return triesNumber;
+    }
+
+    public void setTriesNumber(int triesNumber) {
+        this.triesNumber = triesNumber;
+    }
+
+    public void incrementTriesNumber() {
+        this.triesNumber ++;
+    }
+
+    public int getSuccessesWithFirstTryNumber() {
+        return successesWithFirstTryNumber;
+    }
+
+    public void setSuccessesWithFirstTryNumber(int successesWithFirstTryNumber) {
+        this.successesWithFirstTryNumber = successesWithFirstTryNumber;
+    }
+
+    public void incrementSuccessesWithFirstTryNumber() {
+        this.successesWithFirstTryNumber ++;
+    }
+
+    public boolean isSuccessWithFirstTry() {
+        return successWithFirstTry;
+    }
+
+    public void setSuccessWithFirstTry(boolean successWithFirstTry) {
+        this.successWithFirstTry = successWithFirstTry;
     }
 
     /*public PhotoModel[] getPhotosForDisplayedCategories() {
@@ -93,7 +147,14 @@ public class GameController extends FController<GameModel> {
         int displayedCategoriesNumber = model.getDisplayedCategoriesNumber();
         int[] newPhotosOrder = getSimpleOrder(displayedCategoriesNumber);
         permute(newPhotosOrder, displayedCategoriesNumber);
-        this.model.setPhotosOrder(newPhotosOrder);
+        CategoryModel[] displayedCategories = this.model.getDisplayedCategories();
+        CategoryModel[] temp = new CategoryModel[displayedCategoriesNumber];
+
+        for(int i = 0; i < displayedCategoriesNumber; ++i) {
+            temp[i] = displayedCategories[newPhotosOrder[i]];
+        }
+        this.model.setDisplayedCategories(temp);
+        //this.model.setPhotosOrder(newPhotosOrder);
     }
 
     private void setCategoryToLearn() {
@@ -171,7 +232,7 @@ public class GameController extends FController<GameModel> {
         }
     }
 
-    public void changePhotosForAllCategories() {
+    public void changePhotosForAllDisplayedCategories() {
         changePhotoForCurrentCategory();
         changePhotosForFakeCategories();
     }
@@ -187,7 +248,9 @@ public class GameController extends FController<GameModel> {
         }
     }
 
-    public void showHint(Hint hint) {
+    public void showHint() {
+        successWithFirstTry = false; //nie wazne czy zle kliknal, czyczas minal, pokazala sie podpowiedz, a wiec "zle"
+        Hint hint = new FadeHint();
         hint.show();
     }
 
@@ -202,7 +265,10 @@ public class GameController extends FController<GameModel> {
         timer.cancel(true);
     }
 
-
+    public  void wrongAnswerChosen() {
+        stopTimer();
+        showHint();
+    }
     private void resetAllCategories() {
         List<List<CategoryModel>> allCategories = this.model.getAllCategories();
         int allCategoriesSize = allCategories.size();
