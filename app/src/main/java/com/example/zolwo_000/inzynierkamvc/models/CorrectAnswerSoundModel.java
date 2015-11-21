@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 public class CorrectAnswerSoundModel extends  SoundModel {
     @Override
     public void play(final Activity activity, final CategoryModel category) {//doecelowo bedzie pobierać ze sciezki ktora bezdzie zapisana w kategorii
+        super.play(activity,category);
         int resId = activity.getResources().getIdentifier("dobrze", "raw", activity.getPackageName());
         mediaPlayer = MediaPlayer.create(activity, resId);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

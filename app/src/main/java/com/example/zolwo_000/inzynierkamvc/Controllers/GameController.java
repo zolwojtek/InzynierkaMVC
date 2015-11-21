@@ -99,7 +99,7 @@ public class GameController extends FController<GameModel> {
     private void setCategoryToLearn() {
         CategoryModel categoryToLearn = getRandomCategoryToLearn();
         categoryToLearn.setIsUsed(true);
-        model.setCurrentCategory(categoryToLearn);
+        this.model.setCurrentCategory(categoryToLearn);
     }
 
     public CategoryModel getCategoryToLearn() {
@@ -117,7 +117,8 @@ public class GameController extends FController<GameModel> {
     private CategoryModel getRandomCategory(CategoryType categoryType) {
         List<List<CategoryModel>> allCategories = this.model.getAllCategories();
         List<CategoryModel> categories = null;
-        for (int i = 0; i < allCategories.size(); ++i) {
+        int allCategoriesSize = allCategories.size();
+        for (int i = 0; i < allCategoriesSize; ++i) {
             if(allCategories.get(i).get(0).getType() == categoryType) {
                 categories = allCategories.get(i);
             }
@@ -162,7 +163,8 @@ public class GameController extends FController<GameModel> {
         CategoryModel currentCategory = this.model.getCurrentCategory();
         CategoryController categoryController = GameApplication.getCategoryController();
 
-        for(int i = 0 ;i < displayedCategories.length; ++i) {
+        int displayedCategoriesSize = displayedCategories.length;
+        for(int i = 0 ;i < displayedCategoriesSize; ++i) {
             if(!displayedCategories[i].getName().equals(currentCategory.getName())) {
                 categoryController.setRandomPhotoForCategory(displayedCategories[i]);
             }
@@ -177,9 +179,10 @@ public class GameController extends FController<GameModel> {
     public void setPhotosParameters(PhotoParameters photosParameters) {
         CategoryController categoryController = GameApplication.getCategoryController();
         List<List<CategoryModel>> allCategories = this.model.getAllCategories();
-        for(int i = 0; i < allCategories.size(); ++i) {
-            for(int j = 0; j < allCategories.get(i).size(); ++j) {
-                categoryController.setPhotosParameters(allCategories.get(i).get(j), photosParameters);
+        int allCategoriesSize = allCategories.size();
+        for(int i = 0; i < allCategoriesSize; ++i) {
+            for(CategoryModel category: allCategories.get(i)){
+                categoryController.setPhotosParameters(category, photosParameters);
             }
         }
     }
@@ -202,23 +205,25 @@ public class GameController extends FController<GameModel> {
 
     private void resetAllCategories() {
         List<List<CategoryModel>> allCategories = this.model.getAllCategories();
-        for(int i = 0; i < allCategories.size(); ++i) {
-            for(int j = 0; i < allCategories.get(i).size(); ++j) {
-                allCategories.get(i).get(j).setIsUsed(false);
+        int allCategoriesSize = allCategories.size();
+        for(int i = 0; i < allCategoriesSize; ++i) {
+            for(CategoryModel category: allCategories.get(i)){
+                category.setIsUsed(false);
             }
         }
     }
 
     private void resetDisplayedCategories() {
         CategoryModel[] displayedCategories = this.model.getDisplayedCategories();
-        for(int  i = 0; i < displayedCategories.length; ++i) {
+        int displayedCategoriesSize = displayedCategories.length;
+        for(int  i = 0; i < displayedCategoriesSize; ++i) {
             displayedCategories[i].setIsUsed(false);
         }
     }
 
 
 
-    private int[] getSimpleOrder(int n) {
+    private static int[] getSimpleOrder(int n) {
         int[] tab= new  int[n];
         for(int  i = 0; i < n; ++i) {
             tab[i] = i;
@@ -226,13 +231,13 @@ public class GameController extends FController<GameModel> {
         return tab;
     }
 
-    private void swap(int[] table, int a, int b){
+    private static void swap(int[] table, int a, int b){
         int c = table[a];
         table[a] = table[b];
         table[b] = c;
     }
 
-    private void permute(int[] table, int routeTimes)
+    private static void permute(int[] table, int routeTimes)
     {
         Random rand = new Random();
         int n = table.length;

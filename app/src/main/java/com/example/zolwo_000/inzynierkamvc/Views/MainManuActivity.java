@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.ExerciseInitializeParameters;
+import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.Views.FView;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
@@ -24,9 +27,15 @@ public class MainManuActivity extends Activity implements FView<GameModel> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_manu);
 
-        /*partsOfSpeech = new String[2];
-        partsOfSpeech[0] = "czasowniki";
-        partsOfSpeech[1] = "rzeczowniki";*/
+        //INITIALIZATION
+        ExerciseInitializeParameters exerciseParams = new ExerciseInitializeParameters();
+        GameController gameController = GameApplication.getGameController();
+        GameModel gameModel = GameApplication.getGameModel();
+        gameModel.addView(this);
+        gameModel.setActivity(this);
+        gameModel.addCategories();
+        gameController.initializeExercise(exerciseParams);
+        //END OF INITIALIZATION
 
         LinearLayout buttonsLayout = (LinearLayout) findViewById(R.id.buttonsLayout);
         buttonsLayout.setOrientation(LinearLayout.VERTICAL);

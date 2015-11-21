@@ -84,7 +84,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+            //photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -101,7 +101,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+           //photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -118,7 +118,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+           // photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -135,7 +135,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+            //photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -152,7 +152,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+            //photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -169,7 +169,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+           // photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -186,7 +186,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+           // photo.setImageViewInTable(activity);
           //  photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -203,7 +203,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+           // photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -220,7 +220,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+           // photo.setImageViewInTable(activity);
 //            photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -237,7 +237,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+           // photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }
@@ -254,7 +254,7 @@ public class GameModel extends FModel<FView> {
         for(int i = 0; i < 6; ++i)
         {
             PhotoModel photo = new PhotoModel(base + i);
-            photo.setImageViewInTable(activity);
+          //  photo.setImageViewInTable(activity);
             //photo.setActivity(activity);
             nameList.add(photo);
         }

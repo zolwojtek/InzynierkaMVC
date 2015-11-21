@@ -32,6 +32,7 @@ import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
 public class ExerciseActivity extends Activity implements FView<GameModel> {
 
+    //static int a = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,21 +46,10 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
     }
 
     private void start() {
-        ExerciseInitializeParameters exerciseParams = new ExerciseInitializeParameters();
-
-
         GameController gameController = GameApplication.getGameController();
-
-        GameModel gameModel = GameApplication.getGameModel();
-
-        gameModel.addView(this);
-        gameModel.setActivity(this);
-
-
-        gameModel.addCategories();
-
-        gameController.initializeExercise(exerciseParams);
+        //if(a==1)
         drawGameInterface();
+        //++a;
 
         ImageButton soundTube = (ImageButton) activity.findViewById(R.id.buttonSoundTube);
         soundTube.setOnClickListener(soundTubeClickListener);
@@ -105,6 +95,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         int screenHeight = size.y;
 
         TableLayout tableLayout = (TableLayout) this.findViewById(R.id.gameTableLayout);
+        tableLayout.removeAllViews();
         TableRow[] rows;
         int rowCount = 0;
         int photosPerRow = 0;
@@ -112,6 +103,8 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         int columnMargin = 0;
         int photoWidth = 0;
         int photoHeight = 0;
+
+
 
         GameController gameController = GameApplication.getGameController();
         int displayedCategoriesNumber = gameController.getDisplayedCategoriesNumber();
@@ -152,7 +145,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
                 break;
         }
         PhotoParameters photoParameters = new PhotoParameters(photoWidth, photoHeight, rowMargin, columnMargin);
-        gameController.setPhotosParameters(photoParameters);
+//        gameController.setPhotosParameters(photoParameters);
 
 
 
@@ -166,6 +159,8 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
 
         for(int i = 0; i < displayedCategories.length; ++i) {
             PhotoModel photo = displayedCategories[i].getDisplayedPhoto();
+            photo.setImageViewInTable(this);
+            photo.setPhotoParameters(photoParameters);
             photo.setOnClickListener(wrongPhotoClickListener);
         }
 
@@ -181,6 +176,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
                 tmp++;
             }
         }
+
 
 
     }
