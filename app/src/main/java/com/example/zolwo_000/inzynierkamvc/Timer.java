@@ -24,12 +24,13 @@ public class Timer extends AsyncTask<Integer, Void, Void> {
     @Override
     protected void onProgressUpdate(Void... values){
         GameController gameController = GameApplication.getGameController();
-        gameController.showHint(new FadeHint()); // to oczywiscie bedzie jakos zalezne od parametru pobranego z konfiguracji trzymanego w gameController
+        gameController.showHint(); // to oczywiscie bedzie jakos zalezne od parametru pobranego z konfiguracji trzymanego w gameController
     }
 
     @Override
     protected void onPostExecute(Void result) {
         GameController gameController = GameApplication.getGameController();
-        gameController.stopTimer();
+        //gameController.stopTimer();
+        this.cancel(true);
     }
 }

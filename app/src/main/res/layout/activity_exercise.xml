@@ -19,7 +19,8 @@
         android:layout_height="match_parent"
         android:id="@+id/gameTableLayout"
         android:gravity="center_vertical"
-        android:layout_below="@+id/questionTextView"></TableLayout>
+        android:layout_below="@+id/questionTextView"
+        android:stretchColumns="*"></TableLayout>
 
     <ImageButton
         android:layout_width="50dp"

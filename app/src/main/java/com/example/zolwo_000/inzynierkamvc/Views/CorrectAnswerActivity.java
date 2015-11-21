@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import com.example.zolwo_000.inzynierkamvc.AnimationManager;
 import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
+import com.example.zolwo_000.inzynierkamvc.GameMode;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.CorrectAnswerSoundModel;
@@ -48,7 +49,15 @@ public class CorrectAnswerActivity extends Activity {
         ImageButton soundTubeImageButton = (ImageButton) this.findViewById(R.id.soundTubeImageButton);
         soundTubeImageButton.setOnClickListener(soundTubeClickListener);
         soundTubeImageButton.bringToFront();
+
+        GameMode gameMode = GameApplication.getGameMode();
+        gameMode.setPlanForNextExercise();
+
+
+
     }
+
+
 
     private void playApplause() {
         GameController gameController = GameApplication.getGameController();

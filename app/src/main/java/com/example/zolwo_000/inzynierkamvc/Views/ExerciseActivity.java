@@ -2,30 +2,22 @@ package com.example.zolwo_000.inzynierkamvc.Views;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
-import com.example.zolwo_000.inzynierkamvc.ExerciseInitializeParameters;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.Hint;
-import com.example.zolwo_000.inzynierkamvc.HintType;
 import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
-import com.example.zolwo_000.inzynierkamvc.models.CorrectAnswerSoundModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 import com.example.zolwo_000.inzynierkamvc.models.Level2SoundModel;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
@@ -43,6 +35,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         //jesli nie bylo zapisu(pierwszy raz uruchamiana apka)
         start();
 
+
     }
 
     private void start() {
@@ -54,7 +47,9 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         ImageButton soundTube = (ImageButton) activity.findViewById(R.id.buttonSoundTube);
         soundTube.setOnClickListener(soundTubeClickListener);
         soundTubeClickListener.onClick(soundTube);
-        gameController.startTimer(5,10); // oczywiscie z ustawien...gameController bedzie to mogl czytac bezposrednio ze skladowanych ustawien, parametry nie beda potrzebne
+        //to dobrze jakby sie dzialo w kontrolerze, nie tutaj...jedna metoda initialize czy cos takiego
+        gameController.startTimer(5, 10); // oczywiscie z ustawien...gameController bedzie to mogl czytac bezposrednio ze skladowanych ustawien, parametry nie beda potrzebne
+        gameController.setSuccessWithFirstTry(true);
     }
 
     @Override
@@ -192,6 +187,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
 
             Intent intent = new Intent(ExerciseActivity.this, CorrectAnswerActivity.class);
             gameController.stopTimer();
+
             startActivity(intent);
         }
     };
@@ -205,8 +201,10 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
     public View.OnClickListener wrongPhotoClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View clickedPhoto) {
-              TextView exerciseDescription = (TextView) findViewById(R.id.questionTextView);
-              exerciseDescription.setText("zle");
+            TextView exerciseDescription = (TextView) findViewById(R.id.questionTextView);
+            exerciseDescription.setText("zle");
+            GameController gameController = GameApplication.getGameController();
+            gameController.wrongAnswerChosen();
 
         }
     };
