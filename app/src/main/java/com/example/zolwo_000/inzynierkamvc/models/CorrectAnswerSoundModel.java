@@ -3,6 +3,8 @@ package com.example.zolwo_000.inzynierkamvc.models;
 import android.app.Activity;
 import android.media.MediaPlayer;
 
+import com.example.zolwo_000.inzynierkamvc.Level;
+
 /**
  * Created by zolwo_000 on 18.11.2015.
  */
@@ -16,7 +18,7 @@ public class CorrectAnswerSoundModel extends  SoundModel {
             public void onCompletion(MediaPlayer player) {
                 destroy();
                 CategorySoundModel categorySound = new CategorySoundModel();
-                categorySound.play(activity, category);
+                categorySound.play(activity, category, Level.Level0);
             }
         });
         mediaPlayer.start();

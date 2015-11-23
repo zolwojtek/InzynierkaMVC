@@ -33,7 +33,7 @@
         </activity>
         <activity
             android:name=".Views.CorrectAnswerActivity"
-            android:label="@string/title_activity_correct_answer" >
+            android:label="@string/title_activity_correct_answer"
             android:screenOrientation="landscape" >
         </activity>
     </application>

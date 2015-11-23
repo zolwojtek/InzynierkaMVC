@@ -14,12 +14,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.ExerciseInitializeParameters;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
+import com.example.zolwo_000.inzynierkamvc.Level;
 import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
-import com.example.zolwo_000.inzynierkamvc.models.Level2SoundModel;
+import com.example.zolwo_000.inzynierkamvc.models.QuestionSoundModel;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
 public class ExerciseActivity extends Activity implements FView<GameModel> {
@@ -213,8 +215,9 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         @Override
         public void onClick(View clickedPhoto) {
             GameController gameController = GameApplication.getGameController();
-            Level2SoundModel akedQestion = new Level2SoundModel();
-            akedQestion.play(activity, gameController.getCategoryToLearn());
+            QuestionSoundModel akedQestion = new QuestionSoundModel();
+
+            akedQestion.play(activity, gameController.getCategoryToLearn(), gameController.getLevel());
         }
     };
 

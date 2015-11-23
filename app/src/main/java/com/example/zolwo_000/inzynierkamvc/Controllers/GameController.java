@@ -18,6 +18,7 @@ import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.GameMode;
 import com.example.zolwo_000.inzynierkamvc.Hint;
 import com.example.zolwo_000.inzynierkamvc.HintType;
+import com.example.zolwo_000.inzynierkamvc.Level;
 import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.TherapistMode;
 import com.example.zolwo_000.inzynierkamvc.Timer;
@@ -25,6 +26,7 @@ import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
+import java.security.PublicKey;
 import java.util.List;
 import java.util.Random;
 
@@ -45,7 +47,9 @@ public class GameController extends FController<GameModel> {
     public void initializeExercise(ExerciseInitializeParameters params) {
         //obiekt params powinien byc zapisywany
         int displayedCategoriesNumber = params.getDisplayedCategoriesNumber();
+        Level level = params.getLevel();
         this.model.setDisplayedPhotosNumber(displayedCategoriesNumber);
+        this.model.setLevel(level);
 
         //int[] photosOrder = getSimpleOrder(displayedCategoriesNumber);
         //this.model.setPhotosOrder(photosOrder);
@@ -117,6 +121,8 @@ public class GameController extends FController<GameModel> {
     public int getDisplayedCategoriesNumber() {
         return this.model.getDisplayedCategoriesNumber();
     }
+
+    public Level getLevel() { return this.model.getLevel(); }
 
     private void setFakeCategories() {
         int fakeCategoriesNumber = this.model.getDisplayedCategoriesNumber() - 1;

@@ -31,7 +31,7 @@ public class DataBaseController {
     }
 
     public Cursor loadAudioPath(String category) {
-        String column[] = {"Audio1"};
+        String column[] = {"Audio1","Audio2"};
         String where_clause = "Nazwa='"+category+"'";
 
         return db.query("KATEGORIA", column, where_clause, null, null, null, null, null);

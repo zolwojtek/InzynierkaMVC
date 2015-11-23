@@ -2,19 +2,12 @@ package com.example.zolwo_000.inzynierkamvc.Views;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.example.zolwo_000.inzynierkamvc.AnimationManager;
 import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
@@ -23,7 +16,6 @@ import com.example.zolwo_000.inzynierkamvc.GameMode;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.CorrectAnswerSoundModel;
-import com.example.zolwo_000.inzynierkamvc.models.Level2SoundModel;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
 public class CorrectAnswerActivity extends Activity {

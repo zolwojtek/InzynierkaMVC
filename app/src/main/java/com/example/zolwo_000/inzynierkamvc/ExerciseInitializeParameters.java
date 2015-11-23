@@ -5,12 +5,16 @@ package com.example.zolwo_000.inzynierkamvc;
  */
 public class ExerciseInitializeParameters {
     private int numberOfDisplayedPhotos = 0;
+    private Level level;
 
     public ExerciseInitializeParameters() {
         numberOfDisplayedPhotos = 6;
+        level = Level.Level2;
     }
 
     public int getDisplayedCategoriesNumber() {
         return numberOfDisplayedPhotos;
     }
+
+    public Level getLevel() { return level; }
 }

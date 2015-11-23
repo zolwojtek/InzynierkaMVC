@@ -6,6 +6,7 @@ import android.database.Cursor;
 import com.example.zolwo_000.inzynierkamvc.Controllers.CategoryController;
 import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
+import com.example.zolwo_000.inzynierkamvc.Level;
 import com.example.zolwo_000.inzynierkamvc.Views.FView;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class GameModel extends FModel<FView> {
     private CategoryModel currentCategory = null;
     private int[] displayedOrder = null;
     private int displayedPhotosNumber = 0;
+    private Level level;
 
     public GameModel() {
         //wczytywanie kategorii i zdjec
@@ -62,6 +64,16 @@ public class GameModel extends FModel<FView> {
     public int getDisplayedCategoriesNumber() {
         return this.displayedPhotosNumber;
     }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public Level getLevel() {
+        return this.level;
+    }
+
+
 
 
 

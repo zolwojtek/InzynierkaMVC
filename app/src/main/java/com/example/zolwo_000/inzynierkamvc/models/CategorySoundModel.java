@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 
 import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
+import com.example.zolwo_000.inzynierkamvc.Level;
 
 /**
  * Created by zolwo_000 on 18.11.2015.
@@ -22,14 +23,20 @@ public class CategorySoundModel extends SoundModel {
     }
 
     @Override
-    public void play(Activity activity, CategoryModel category) {
-        //int resId = activity.getResources().getIdentifier(category.getName() + "_m", "raw", activity.getPackageName());
+    public void play(Activity activity, CategoryModel category, Level level) {
 
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.openDataBase();
         Cursor audioPath = dataBaseController.loadAudioPath(category.getName());
         audioPath.moveToNext();
-        Uri uri = Uri.parse(audioPath.getString(0));
+
+        Uri uri;
+        if (level == Level.Level2 && audioPath.getString(1) == "") {
+            uri = Uri.parse(audioPath.getString(1));
+        } else {
+            uri = Uri.parse(audioPath.getString(0));
+        }
+
         dataBaseController.closeDataBase();
 
         mediaPlayer = MediaPlayer.create(activity, uri);
