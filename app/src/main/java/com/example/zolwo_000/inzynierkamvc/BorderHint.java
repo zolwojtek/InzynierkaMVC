@@ -7,7 +7,7 @@ import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 /**
  * Created by zolwo_000 on 18.11.2015.
  */
-public class BoldHint implements Hint {
+public class BorderHint implements Hint {
     @Override
     public void show() {
         GameController gameController = GameApplication.getGameController();

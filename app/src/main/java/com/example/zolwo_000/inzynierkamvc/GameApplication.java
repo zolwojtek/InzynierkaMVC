@@ -33,13 +33,14 @@ public class GameApplication extends Application {
         }
         return gameController;
     }
-//Finalnie to nie bedzie moglo byc tu, poniewaz to zalezy od ustawien
-    public static GameMode getGameMode() {
-        if (gameMode == null) {
-            gameMode = new TherapistMode();
-        }
-        return gameMode;
-    }
+////Finalnie to nie bedzie moglo byc tu, poniewaz to zalezy od ustawien
+//    public static GameMode getGameMode() {
+//        if (gameMode == null) {
+//
+//            gameMode = GameModeFactory.getGameModeClass()
+//        }
+//        return gameMode;
+//    }
 
     public static Random getRandom() {
         if (random == null) {

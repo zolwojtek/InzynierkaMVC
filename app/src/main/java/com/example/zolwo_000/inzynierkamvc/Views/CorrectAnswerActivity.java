@@ -42,11 +42,10 @@ public class CorrectAnswerActivity extends Activity {
         soundTubeImageButton.setOnClickListener(soundTubeClickListener);
         soundTubeImageButton.bringToFront();
 
-        GameMode gameMode = GameApplication.getGameMode();
+        GameController gameController = GameApplication.getGameController();
+
+        GameMode gameMode = gameController.getGameMode();
         gameMode.setPlanForNextExercise();
-
-
-
     }
 
 

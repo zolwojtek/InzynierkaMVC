@@ -5,6 +5,6 @@ package com.example.zolwo_000.inzynierkamvc;
  */
 public enum HintType {
     NONE,
-    BORDER,             // ramka wokół poprawnego zdjęcja
-    FADE;               // wygaszanie błędnych zdjęć
+    BORDER,
+    FADE
 }

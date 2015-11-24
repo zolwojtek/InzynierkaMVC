@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by Ola on 2015-11-21.
  */
 public class DataBaseController {
-    String dataBasePath = "sdcard/InzynierkaPliki/db.s3db";
+    String dataBasePath = "storage/sdcard1/InzynierkaPliki/db.s3db";
     SQLiteDatabase db;
 
     public void openDataBase() {

@@ -1,7 +1,10 @@
 package com.example.zolwo_000.inzynierkamvc.Views;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +17,9 @@ import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.ExerciseInitializeParameters;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.R;
+import com.example.zolwo_000.inzynierkamvc.Storage;
 import com.example.zolwo_000.inzynierkamvc.Views.FView;
+import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 
 public class MainManuActivity extends Activity implements FView<GameModel> {
@@ -27,14 +32,29 @@ public class MainManuActivity extends Activity implements FView<GameModel> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_manu);
 
+        Context context = null;
+        try {
+             context = createPackageContext("com.example.klaudia.configapp", Context.CONTEXT_IGNORE_SECURITY);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ////////////////Zczytywanie parametrów
+        SharedPreferences prefs = context.getSharedPreferences("sharedPref", Context.MODE_WORLD_READABLE);
+        ConfigurationModel nounConfig = new ConfigurationModel("noun");
+        ConfigurationModel verbConfig = new ConfigurationModel("verb");
+        Storage storage = new Storage(prefs, nounConfig,verbConfig);
+        storage.read();
+        ////////////////////////
+
         //INITIALIZATION
-        ExerciseInitializeParameters exerciseParams = new ExerciseInitializeParameters();
+        //ExerciseInitializeParameters exerciseParams = new ExerciseInitializeParameters();
         GameController gameController = GameApplication.getGameController();
         GameModel gameModel = GameApplication.getGameModel();
         gameModel.addView(this);
         gameModel.setActivity(this);
         gameModel.addCategories();
-        gameController.initializeExercise(exerciseParams);
+        gameController.initializeExercise(nounConfig,verbConfig);
         //END OF INITIALIZATION
 
         LinearLayout buttonsLayout = (LinearLayout) findViewById(R.id.buttonsLayout);

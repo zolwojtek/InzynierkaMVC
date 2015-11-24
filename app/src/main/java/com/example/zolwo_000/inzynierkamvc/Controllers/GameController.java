@@ -1,32 +1,20 @@
 package com.example.zolwo_000.inzynierkamvc.Controllers;
 
-import android.graphics.Color;
-import android.graphics.Point;
-import android.view.Display;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-
 import com.example.zolwo_000.inzynierkamvc.CategoryType;
-import com.example.zolwo_000.inzynierkamvc.ExerciseInitializeParameters;
-import com.example.zolwo_000.inzynierkamvc.FadeHint;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.GameMode;
+import com.example.zolwo_000.inzynierkamvc.GameModeFactory;
+import com.example.zolwo_000.inzynierkamvc.GameModeType;
 import com.example.zolwo_000.inzynierkamvc.Hint;
+import com.example.zolwo_000.inzynierkamvc.HintFactory;
 import com.example.zolwo_000.inzynierkamvc.HintType;
 import com.example.zolwo_000.inzynierkamvc.Level;
 import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
-import com.example.zolwo_000.inzynierkamvc.TherapistMode;
 import com.example.zolwo_000.inzynierkamvc.Timer;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
+import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
-import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
-import java.security.PublicKey;
 import java.util.List;
 import java.util.Random;
 
@@ -44,10 +32,14 @@ public class GameController extends FController<GameModel> {
     private int triesNumber;
     private int successesWithFirstTryNumber;
 
-    public void initializeExercise(ExerciseInitializeParameters params) {
+    public void initializeExercise(ConfigurationModel nounConfig, ConfigurationModel verbConfig) {
         //obiekt params powinien byc zapisywany
-        int displayedCategoriesNumber = params.getDisplayedCategoriesNumber();
-        Level level = params.getLevel();
+        int displayedCategoriesNumber = nounConfig.getDisplayCount();
+        Level level = Level.Level1;
+        HintType hintType = HintType.valueOf(nounConfig.getHintType().toUpperCase());
+        GameModeType gameModeType = GameModeType.valueOf(nounConfig.getMode().toUpperCase());
+        this.model.setGameModeType(gameModeType);
+        this.model.setHintType(hintType);
         this.model.setDisplayedPhotosNumber(displayedCategoriesNumber);
         this.model.setLevel(level);
 
@@ -61,6 +53,10 @@ public class GameController extends FController<GameModel> {
 
 
         //gameMode = new TherapistMode();
+    }
+
+    public GameMode getGameMode() {
+        return GameModeFactory.getGameModeClass(this.model.getGameModeType());
     }
 
     public CategoryModel[] getDisplayedCategories() {
@@ -256,7 +252,7 @@ public class GameController extends FController<GameModel> {
 
     public void showHint() {
         successWithFirstTry = false; //nie wazne czy zle kliknal, czyczas minal, pokazala sie podpowiedz, a wiec "zle"
-        Hint hint = new FadeHint();
+        Hint hint = HintFactory.getHintClass(this.model.getHintType());
         hint.show();
     }
 
