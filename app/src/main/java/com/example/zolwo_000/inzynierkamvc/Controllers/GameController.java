@@ -32,7 +32,7 @@ public class GameController extends FController<GameModel> {
     private int triesNumber;
     private int successesWithFirstTryNumber;
 
-    public void initializeExercise(ConfigurationModel nounConfig, ConfigurationModel verbConfig) {
+    public void initializeExercise(ConfigurationModel nounConfig) {
         //obiekt params powinien byc zapisywany
         int displayedCategoriesNumber = nounConfig.getDisplayCount();
         Level level = Level.Level1;

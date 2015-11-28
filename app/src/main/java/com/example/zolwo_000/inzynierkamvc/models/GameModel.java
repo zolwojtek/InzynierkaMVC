@@ -1,10 +1,13 @@
 package com.example.zolwo_000.inzynierkamvc.models;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 
+import com.example.zolwo_000.inzynierkamvc.Child;
 import com.example.zolwo_000.inzynierkamvc.Controllers.CategoryController;
 import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
+import com.example.zolwo_000.inzynierkamvc.DbAdapter;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.GameModeType;
 import com.example.zolwo_000.inzynierkamvc.HintType;
@@ -12,6 +15,7 @@ import com.example.zolwo_000.inzynierkamvc.Level;
 import com.example.zolwo_000.inzynierkamvc.Views.FView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -106,16 +110,47 @@ public class GameModel extends FModel<FView> {
     }
 
     public void addCategories() {
-        List<List<CategoryModel>> allCategories = new ArrayList<>();
+
         List<CategoryModel> categoriesToLearn = new ArrayList<>();
         List<CategoryModel> nouns = new ArrayList<>();
 
         CategoryController categoryController = GameApplication.getCategoryController();
 
-        ArrayList<PhotoModel>nameList;// = new ArrayList<>();
+        ArrayList<PhotoModel> nameList;// = new ArrayList<>();
+
+
+
+
+
+        List<CategoryModel> categories;
+        List<String> listDataHeader;
+        HashMap<String, List<String>> listDataChild;
+
+
+
+        List<List<CategoryModel>> allCategories = new ArrayList<>();
+
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
+
+        Context sharedContext = null;
+        try {
+            sharedContext = activity.createPackageContext("com.example.klaudia.configapp", Context.CONTEXT_INCLUDE_CODE);
+            if (sharedContext == null) {
+                return;
+            }
+        } catch (Exception e) {
+            String error = e.getMessage();
+            return;
+        }
+
+        DbAdapter sharedDBadapter = new DbAdapter(sharedContext);
+        sharedDBadapter.openDB();
+
 
         DataBaseController dataBaseController = new DataBaseController();
-        dataBaseController.openDataBase();
+
+        dataBaseController.setDb(sharedDBadapter.getDb());
 
         Cursor cursorCategories = dataBaseController.loadCategories();
         Cursor cursorPhotos;
@@ -129,7 +164,7 @@ public class GameModel extends FModel<FView> {
             while(cursorPhotos.moveToNext()) {
                 PhotoModel photo = new PhotoModel(cursorPhotos.getString(0));
                 photo.setImageViewInTable(activity);
-                //photo.setActivity(activity);
+        
                 nameList.add(photo);
             }
 
@@ -143,6 +178,10 @@ public class GameModel extends FModel<FView> {
             nouns.add(catTmp);
             categoriesToLearn.add(catTmp);
         }
+        allCategories.add(nouns);
+        this.partsOfSpeech = allCategories;
+        this.categoriesToLearn = nouns;
+    }
 
 /*        String base = "lalka";
         for(int i = 0; i < 6; ++i)
@@ -353,8 +392,9 @@ public class GameModel extends FModel<FView> {
         nouns.add(cat11);
         categoriesToLearn.add(cat11);*/
 
-        allCategories.add(nouns);
-        this.partsOfSpeech = allCategories;
-        this.categoriesToLearn = categoriesToLearn;
-    }
+//        allCategories.add(nouns);
+//        this.partsOfSpeech = allCategories;
+//        this.categoriesToLearn = categoriesToLearn;
+//    }
+
 }

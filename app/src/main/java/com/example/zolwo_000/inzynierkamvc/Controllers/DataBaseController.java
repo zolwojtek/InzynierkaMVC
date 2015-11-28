@@ -7,11 +7,16 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by Ola on 2015-11-21.
  */
 public class DataBaseController {
-    String dataBasePath = "storage/sdcard1/InzynierkaPliki/db.s3db";
+    //String dataBasePath = "/data/data/com.example.zolow_000.inzynierkamvc/databases/db.s3db";
+    String dataBasePath = "/data/data/com.example.klaudia.configapp/databases/db.s3db";
     SQLiteDatabase db;
 
     public void openDataBase() {
         db = SQLiteDatabase.openDatabase(dataBasePath, null, SQLiteDatabase.OPEN_READONLY);
+    }
+
+    public void setDb(SQLiteDatabase db) {
+        this.db = db;
     }
 
     public void closeDataBase() {
@@ -20,7 +25,13 @@ public class DataBaseController {
 
     public Cursor loadCategories() {
         String column[] = {"Nazwa"};
-        return db.query("KATEGORIA", column, null, null, null, null, null, null);
+        try {
+            return db.query("KATEGORIA", column, null, null, null, null, null, null);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     public Cursor loadPhotosPath(String category) {
