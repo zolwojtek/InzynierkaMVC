@@ -20,7 +20,7 @@ import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
-import com.example.zolwo_000.inzynierkamvc.models.QuestionSoundModel;
+import com.example.zolwo_000.inzynierkamvc.sounds.QuestionSound;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
 public class ExerciseActivity extends Activity implements FView<GameModel> {
@@ -213,7 +213,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         @Override
         public void onClick(View clickedPhoto) {
             GameController gameController = GameApplication.getGameController();
-            QuestionSoundModel askedQuestion = new QuestionSoundModel();
+            QuestionSound askedQuestion = new QuestionSound();
             askedQuestion.play(activity, gameController.getCategoryToLearn(), gameController.getLevel());
         }
     };

@@ -12,7 +12,7 @@ import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
 import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.utils.Timer;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
-import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
+import com.example.zolwo_000.inzynierkamvc.sounds.ConfigurationModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class GameController extends FController<GameModel> {
     public void initializeExercise(ConfigurationModel nounConfig) {
         //obiekt params powinien byc zapisywany
         int displayedCategoriesNumber = nounConfig.getDisplayCount();
-        Level level = Level.Level1;
+        Level level = Level.LEVEL1;
         HintType hintType = HintType.valueOf(nounConfig.getHintType().toUpperCase());
         GameModeType gameModeType = GameModeType.valueOf(nounConfig.getMode().toUpperCase());
         this.model.setGameModeType(gameModeType);

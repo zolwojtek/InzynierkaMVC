@@ -1,12 +1,15 @@
-package com.example.zolwo_000.inzynierkamvc.models;
+package com.example.zolwo_000.inzynierkamvc.sounds;
 
 import android.app.Activity;
 import android.media.MediaPlayer;
 
+import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
+import com.example.zolwo_000.inzynierkamvc.sounds.SoundBase;
+
 /**
  * Created by zolwo_000 on 18.11.2015.
  */
-public class WrongAnswerSoundModel extends SoundModel {
+public class WrongAnswerSound extends SoundBase {
     @Override
     public void play(Activity activity, CategoryModel category) {
         int resId = activity.getResources().getIdentifier("zle", "raw", activity.getPackageName());

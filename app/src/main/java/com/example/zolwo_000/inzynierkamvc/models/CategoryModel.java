@@ -23,54 +23,53 @@ public class CategoryModel extends FModel<FView> {
     private boolean isUsed = false;
 
 
-    public int getPhotosNumber() {
-        return photosNumber;
+    public List<PhotoModel> getPhotosLearningSet() {
+        return photosLearningSet;
     }
 
-    public void setPhotosNumber(int photosNumber) {
-        this.photosNumber = photosNumber;
+    public void setPhotosLearningSet(List<PhotoModel> photosLearningSet) {
+        this.photosLearningSet = photosLearningSet;
     }
 
-    public void setPhotosList(List<PhotoModel> photosList) {
-        this.photosList = photosList;
+    public List<PhotoModel> getPhotosGeneralizationSet() {
+        return photosGeneralizationSet;
+    }
+
+    public void setPhotosGeneralizationSet(List<PhotoModel> photosGeneralizationSet) {
+        this.photosGeneralizationSet = photosGeneralizationSet;
     }
 
     public List<PhotoModel> getPhotosList() {
         return photosList;
     }
 
-    public void setDisplayedPhoto(PhotoModel photo) {
-        this.displayedPhoto = photo;
+    public void setPhotosList(List<PhotoModel> photosList) {
+        this.photosList = photosList;
     }
 
     public PhotoModel getDisplayedPhoto() {
         return displayedPhoto;
     }
 
-    public boolean getIsUsed() {
-        return isUsed;
-    }
-
-    public void setIsUsed(boolean isUsed) {
-        this.isUsed = isUsed;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setDisplayedPhoto(PhotoModel displayedPhoto) {
+        this.displayedPhoto = displayedPhoto;
     }
 
     public CategoryType getType() {
         return type;
     }
 
+    public void setType(CategoryType type) {
+        this.type = type;
+    }
 
+    public String getStatus() {
+        return status;
+    }
 
-
-    ;
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getAudio1() {
         return audio1;
@@ -88,14 +87,27 @@ public class CategoryModel extends FModel<FView> {
         this.audio2 = audio2;
     }
 
-    public String getStatus() {
-        return status;
+    public String getName() {
+        return name;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public int getPhotosNumber() {
+        return photosNumber;
+    }
 
+    public void setPhotosNumber(int photosNumber) {
+        this.photosNumber = photosNumber;
+    }
 
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setIsUsed(boolean isUsed) {
+        this.isUsed = isUsed;
+    }
 }

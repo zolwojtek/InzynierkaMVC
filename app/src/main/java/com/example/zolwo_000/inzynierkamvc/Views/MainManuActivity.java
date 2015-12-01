@@ -16,8 +16,8 @@ import android.widget.LinearLayout;
 import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.R;
-import com.example.zolwo_000.inzynierkamvc.utils.PreferencesManager;
-import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
+import com.example.zolwo_000.inzynierkamvc.managers.PreferencesManager;
+import com.example.zolwo_000.inzynierkamvc.sounds.ConfigurationModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 
 public class MainManuActivity extends Activity implements FView<GameModel> {

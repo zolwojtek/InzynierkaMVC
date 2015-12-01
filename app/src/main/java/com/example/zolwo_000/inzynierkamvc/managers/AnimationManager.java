@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.utils;
+package com.example.zolwo_000.inzynierkamvc.managers;
 
 import android.app.Activity;
 import android.view.animation.Animation;

@@ -7,11 +7,12 @@ import android.net.Uri;
 
 import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
 import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
+import com.example.zolwo_000.inzynierkamvc.sounds.SoundBase;
 
 /**
  * Created by zolwo_000 on 18.11.2015.
  */
-public class CategorySoundModel extends SoundModel {
+public class CategorySound extends SoundBase {
     @Override
     public void destroy() {
         super.destroy();
@@ -31,7 +32,7 @@ public class CategorySoundModel extends SoundModel {
         audioPath.moveToNext();
 
         Uri uri;
-        if (level == Level.Level2 && audioPath.getString(1) == "") {
+        if (level == Level.LEVEL2 && audioPath.getString(1) == "") {
             uri = Uri.parse(audioPath.getString(1));
         } else {
             uri = Uri.parse(audioPath.getString(0));

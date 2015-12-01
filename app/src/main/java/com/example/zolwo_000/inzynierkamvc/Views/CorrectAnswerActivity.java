@@ -9,13 +9,13 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
 
-import com.example.zolwo_000.inzynierkamvc.utils.AnimationManager;
+import com.example.zolwo_000.inzynierkamvc.managers.AnimationManager;
 import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.gameModes.GameMode;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
-import com.example.zolwo_000.inzynierkamvc.models.CorrectAnswerSoundModel;
+import com.example.zolwo_000.inzynierkamvc.sounds.CorrectAnswerSound;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
 public class CorrectAnswerActivity extends Activity {
@@ -54,7 +54,7 @@ public class CorrectAnswerActivity extends Activity {
 
     private void playApplause() {
         GameController gameController = GameApplication.getGameController();
-        CorrectAnswerSoundModel correctAnswerSound = new CorrectAnswerSoundModel();
+        CorrectAnswerSound correctAnswerSound = new CorrectAnswerSound();
         correctAnswerSound.play(this, gameController.getCategoryToLearn());
     }
 

@@ -1,10 +1,8 @@
-package com.example.zolwo_000.inzynierkamvc.utils;
+package com.example.zolwo_000.inzynierkamvc.managers;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
+import com.example.zolwo_000.inzynierkamvc.sounds.ConfigurationModel;
 
 /**
  * Created by Klaudia on 2015-11-06.
