@@ -3,7 +3,7 @@ package com.example.zolwo_000.inzynierkamvc.utils;
 import android.os.AsyncTask;
 
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 
 /**
  * Created by zolwo_000 on 18.11.2015.

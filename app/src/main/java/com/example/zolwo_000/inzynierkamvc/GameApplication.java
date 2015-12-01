@@ -2,9 +2,8 @@ package com.example.zolwo_000.inzynierkamvc;
 
 import android.app.Application;
 
-import com.example.zolwo_000.inzynierkamvc.controllers.CategoryController;
-import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
-import com.example.zolwo_000.inzynierkamvc.gameModes.GameMode;
+import com.example.zolwo_000.inzynierkamvc.Controllers.CategoryController;
+import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 
 import java.util.Random;

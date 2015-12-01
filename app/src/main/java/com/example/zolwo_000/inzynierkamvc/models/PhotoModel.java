@@ -16,7 +16,7 @@ import android.widget.TableRow;
 
 import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.R;
-import com.example.zolwo_000.inzynierkamvc.views.FView;
+import com.example.zolwo_000.inzynierkamvc.Views.FView;
 
 import java.io.File;
 import java.io.FileInputStream;

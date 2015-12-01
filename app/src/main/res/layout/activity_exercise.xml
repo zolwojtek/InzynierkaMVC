@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.zolwo_000.inzynierkamvc.views.ExerciseActivity"
+    tools:context="com.example.zolwo_000.inzynierkamvc.Views.ExerciseActivity"
     android:id="@+id/gameLayout"
     android:background="@drawable/paper">
 

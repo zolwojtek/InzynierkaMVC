@@ -1,8 +1,7 @@
 package com.example.zolwo_000.inzynierkamvc.models;
 
 import com.example.zolwo_000.inzynierkamvc.enumerators.CategoryType;
-import com.example.zolwo_000.inzynierkamvc.Child;
-import com.example.zolwo_000.inzynierkamvc.views.FView;
+import com.example.zolwo_000.inzynierkamvc.Views.FView;
 
 import java.util.List;
 
@@ -10,14 +9,18 @@ import java.util.List;
  * Created by zolwo_000 on 17.11.2015.
  */
 public class CategoryModel extends FModel<FView> {
-    private String name = null;
+
     private List<PhotoModel> photosLearningSet = null;
     private List<PhotoModel> photosGeneralizationSet = null;
     private List<PhotoModel> photosList = null;
     private PhotoModel displayedPhoto = null;
     private CategoryType type = null;
+    private String status = "";
+    private String audio1 = "";
+    private String audio2 = "";
+    private String name = null;
     private int photosNumber;
-    private boolean isUsed;
+    private boolean isUsed = false;
 
 
     public int getPhotosNumber() {
@@ -67,10 +70,7 @@ public class CategoryModel extends FModel<FView> {
 
 
 
-    private String status = "";
-    private String audio1 = "";
-    private String audio2 = "";
-    private List<Child> children;
+    ;
 
     public String getAudio1() {
         return audio1;
@@ -96,13 +96,6 @@ public class CategoryModel extends FModel<FView> {
         this.status = status;
     }
 
-    public List<Child> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Child> children) {
-        this.children = children;
-    }
 
 
 }

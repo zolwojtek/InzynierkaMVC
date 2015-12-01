@@ -4,14 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.zolwo_000.inzynierkamvc.controllers.CategoryController;
-import com.example.zolwo_000.inzynierkamvc.controllers.DataBaseController;
+import com.example.zolwo_000.inzynierkamvc.Controllers.CategoryController;
+import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
 import com.example.zolwo_000.inzynierkamvc.DbAdapter;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.enumerators.GameModeType;
 import com.example.zolwo_000.inzynierkamvc.enumerators.HintType;
 import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
-import com.example.zolwo_000.inzynierkamvc.views.FView;
+import com.example.zolwo_000.inzynierkamvc.Views.FView;
 
 import java.util.ArrayList;
 import java.util.HashMap;

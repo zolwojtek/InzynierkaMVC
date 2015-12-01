@@ -1,6 +1,6 @@
 package com.example.zolwo_000.inzynierkamvc.models;
 
-import com.example.zolwo_000.inzynierkamvc.views.FView;
+import com.example.zolwo_000.inzynierkamvc.Views.FView;
 
 import java.util.ArrayList;
 

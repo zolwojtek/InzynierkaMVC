@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.controllers;
+package com.example.zolwo_000.inzynierkamvc.Controllers;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

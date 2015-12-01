@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.controllers;
+package com.example.zolwo_000.inzynierkamvc.Controllers;
 
 import com.example.zolwo_000.inzynierkamvc.enumerators.CategoryType;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;

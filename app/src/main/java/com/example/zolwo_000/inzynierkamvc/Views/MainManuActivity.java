@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.views;
+package com.example.zolwo_000.inzynierkamvc.Views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.utils.PreferencesManager;
