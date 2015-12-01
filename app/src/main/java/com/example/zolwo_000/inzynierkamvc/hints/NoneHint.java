@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.hints;
 
 /**
  * Created by zolwo_000 on 24.11.2015.

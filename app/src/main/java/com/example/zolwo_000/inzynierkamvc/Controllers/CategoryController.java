@@ -1,7 +1,7 @@
-package com.example.zolwo_000.inzynierkamvc.Controllers;
+package com.example.zolwo_000.inzynierkamvc.controllers;
 
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
+import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 

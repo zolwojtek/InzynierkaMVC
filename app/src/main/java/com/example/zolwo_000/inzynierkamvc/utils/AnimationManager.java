@@ -1,8 +1,10 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.utils;
 
 import android.app.Activity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
+import com.example.zolwo_000.inzynierkamvc.R;
 
 import java.util.Random;
 

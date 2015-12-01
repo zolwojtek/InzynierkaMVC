@@ -1,6 +1,7 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.gameModes;
 
-import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.GameApplication;
+import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
 
 /**
  * Created by zolwo_000 on 21.11.2015.
@@ -18,9 +19,6 @@ public class AutomaticMode implements GameMode {
             gameController.incrementSuccessesWithFirstTryNumber();
             gameController.changePhotosOrder();
             gameController.changePhotosForAllDisplayedCategories();
-        } else {
-            //powtorz dokladnie to samo
-            //terapeyta bedzie mial przycisk, ze nawet przy dobrej odpowiedzi bedzie mogl powtorzyc dokladnie to samo
         }
         gameController.incrementTriesNumber();
 

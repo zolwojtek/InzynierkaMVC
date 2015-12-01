@@ -3,7 +3,7 @@ package com.example.zolwo_000.inzynierkamvc.models;
 import android.app.Activity;
 import android.media.MediaPlayer;
 
-import com.example.zolwo_000.inzynierkamvc.Level;
+import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
 
 /**
  * Created by zolwo_000 on 18.11.2015.

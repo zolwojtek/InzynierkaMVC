@@ -1,4 +1,9 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.gameModes;
+
+import com.example.zolwo_000.inzynierkamvc.enumerators.GameModeType;
+import com.example.zolwo_000.inzynierkamvc.gameModes.AutomaticMode;
+import com.example.zolwo_000.inzynierkamvc.gameModes.GameMode;
+import com.example.zolwo_000.inzynierkamvc.gameModes.TherapistMode;
 
 /**
  * Created by zolwo_000 on 24.11.2015.

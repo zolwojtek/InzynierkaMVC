@@ -1,12 +1,10 @@
 package com.example.zolwo_000.inzynierkamvc.models;
 
-import com.example.zolwo_000.inzynierkamvc.CategoryType;
+import com.example.zolwo_000.inzynierkamvc.enumerators.CategoryType;
 import com.example.zolwo_000.inzynierkamvc.Child;
-import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.Views.FView;
+import com.example.zolwo_000.inzynierkamvc.views.FView;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by zolwo_000 on 17.11.2015.

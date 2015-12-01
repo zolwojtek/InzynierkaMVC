@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.Views;
+package com.example.zolwo_000.inzynierkamvc.views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,60 +6,37 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.R;
-import com.example.zolwo_000.inzynierkamvc.PreferencesManager;
+import com.example.zolwo_000.inzynierkamvc.utils.PreferencesManager;
 import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 
-import java.io.File;
-
 public class MainManuActivity extends Activity implements FView<GameModel> {
-
-    //na razie tworze tutaj tablicę stringów lobalnie...bedzie ona reprezentowac czesci mowy, które maja byc dostepne do cwiczenia...docelowo, odczytane z bazy/pliku konfiguracyjnego
-    private String[] partsOfSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_manu);
-
-        Context context = null;
-        try {
-             context = createPackageContext("com.example.klaudia.configapp", Context.CONTEXT_IGNORE_SECURITY);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        String b = Environment.getExternalStorageDirectory().toString();
-//        File file = new File(b+"/Android/"+"data/"+"InzynierkaPliki/"+"Dzwieki/"+"ser_m.mp3");
-//        boolean c = file.exists();
-
-        ////////////////Zczytywanie parametrów
-        SharedPreferences prefs = context.getSharedPreferences("sharedPref", Context.MODE_WORLD_READABLE);
-        ConfigurationModel config = new ConfigurationModel("noun");
-        //ConfigurationModel verbConfig = new ConfigurationModel("verb");
-        PreferencesManager storage = new PreferencesManager(prefs, config);
-        storage.read();
-        ////////////////////////
-
-        //INITIALIZATION
-        //ExerciseInitializeParameters exerciseParams = new ExerciseInitializeParameters();
         GameController gameController = GameApplication.getGameController();
         GameModel gameModel = GameApplication.getGameModel();
+
+        Context context;
+        context = getTherapistContext();
+        ConfigurationModel config = getConfigurationModel(context);
+
         gameModel.addView(this);
         gameModel.setActivity(this);
         gameModel.addCategories();
         gameController.initializeExercise(config);
-        //END OF INITIALIZATION
 
         LinearLayout buttonsLayout = (LinearLayout) findViewById(R.id.buttonsLayout);
         buttonsLayout.setOrientation(LinearLayout.VERTICAL);
@@ -72,20 +49,27 @@ public class MainManuActivity extends Activity implements FView<GameModel> {
             }
         };
 
-        //int numberOfButtons = partsOfSpeech.length;
-        //for(int i = 0; i < numberOfButtons; i++) {
         ImageButton startButton = (ImageButton) findViewById(R.id.startButton);
+        startButton.setOnClickListener(buttonListener);
+    }
 
-            //Button button = new Button(getApplicationContext());
-            //button.setBackgroundColor(Color.BLACK);
-            //LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            //layoutParams.setMargins(0, 0, 0, 20);
-            //button.setText("Start");
-            //button.setId(0);
-            //buttonsLayout.addView(button, layoutParams);
-            startButton.setOnClickListener(buttonListener);
-        //}
+    @NonNull
+    private ConfigurationModel getConfigurationModel(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("sharedPref", Context.MODE_WORLD_READABLE);
+        ConfigurationModel config = new ConfigurationModel("noun");
+        PreferencesManager storage = new PreferencesManager(prefs, config);
+        storage.read();
+        return config;
+    }
 
+    private Context getTherapistContext() {
+        Context context = null;
+        try {
+             context = createPackageContext("com.example.klaudia.configapp", Context.CONTEXT_IGNORE_SECURITY);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return context;
     }
 
     @Override
@@ -113,5 +97,12 @@ public class MainManuActivity extends Activity implements FView<GameModel> {
     @Override
     public void update(GameModel model) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //-----------TO DO------------
+        //ZAPISYWANIE CWICZONEJ KATEGORII DLA TRYBU TERAPEUTY
     }
 }

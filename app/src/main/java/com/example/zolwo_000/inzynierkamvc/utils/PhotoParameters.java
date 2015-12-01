@@ -1,11 +1,11 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.utils;
 
 /**
  * Created by zolwo_000 on 18.11.2015.
  */
 public class PhotoParameters {
     private int photoWidth;
-    private int photoHeigh;
+    private int photoHeight;
     private int rowMargin;
     private int columnMargin;
 
@@ -17,7 +17,7 @@ public class PhotoParameters {
         this.photoWidth = photoWidth;
         this.columnMargin = columnMargin;
         this.rowMargin = rowMargin;
-        this.photoHeigh = photoHeigh;
+        this.photoHeight = photoHeigh;
     }
 
     public int getPhotoWidth() {
@@ -28,12 +28,12 @@ public class PhotoParameters {
         this.photoWidth = photoWidth;
     }
 
-    public int getPhotoHeigh() {
-        return photoHeigh;
+    public int getPhotoHeight() {
+        return photoHeight;
     }
 
-    public void setPhotoHeigh(int photoHeigh) {
-        this.photoHeigh = photoHeigh;
+    public void setPhotoHeight(int photoHeight) {
+        this.photoHeight = photoHeight;
     }
 
     public int getRowMargin() {

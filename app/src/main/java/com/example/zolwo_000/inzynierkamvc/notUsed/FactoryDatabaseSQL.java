@@ -3,8 +3,8 @@ package com.example.zolwo_000.inzynierkamvc.notUsed;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.zolwo_000.inzynierkamvc.sqlCreate.SqlCategory;
-import com.example.zolwo_000.inzynierkamvc.sqlCreate.SqlImage;
+import com.example.zolwo_000.inzynierkamvc.notUsed.sqlCreate.SqlCategory;
+import com.example.zolwo_000.inzynierkamvc.notUsed.sqlCreate.SqlImage;
 
 /**
  * Created by Chris on 10/24/2014.

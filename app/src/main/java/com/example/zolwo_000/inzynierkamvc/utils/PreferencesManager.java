@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.utils;
 
 import android.app.Activity;
 import android.content.Context;

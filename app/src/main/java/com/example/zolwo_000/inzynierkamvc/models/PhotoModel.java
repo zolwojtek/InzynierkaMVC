@@ -2,26 +2,21 @@ package com.example.zolwo_000.inzynierkamvc.models;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Build;
-import android.text.Layout;
 import android.view.Display;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 
-import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
+import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.R;
-import com.example.zolwo_000.inzynierkamvc.Views.ExerciseActivity;
-import com.example.zolwo_000.inzynierkamvc.Views.FView;
+import com.example.zolwo_000.inzynierkamvc.views.FView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -50,7 +45,7 @@ public class PhotoModel extends FModel<FView> {
 
     public void setPhotoParameters(PhotoParameters photoParameters) {
         this.photoParameters = photoParameters;
-        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(photoParameters.getPhotoWidth(), photoParameters.getPhotoHeigh());
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(photoParameters.getPhotoWidth(), photoParameters.getPhotoHeight());
         layoutParams.setMargins(0, photoParameters.getRowMargin(), photoParameters.getColumnMargin(), 0);
         frameLayout.setLayoutParams(layoutParams);
     }

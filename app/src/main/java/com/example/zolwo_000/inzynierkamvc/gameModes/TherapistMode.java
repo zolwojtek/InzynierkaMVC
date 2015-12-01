@@ -1,6 +1,8 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.gameModes;
 
-import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.GameApplication;
+import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.gameModes.GameMode;
 
 /**
  * Created by zolwo_000 on 21.11.2015.

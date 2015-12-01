@@ -4,20 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.zolwo_000.inzynierkamvc.Child;
-import com.example.zolwo_000.inzynierkamvc.Controllers.CategoryController;
-import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
+import com.example.zolwo_000.inzynierkamvc.controllers.CategoryController;
+import com.example.zolwo_000.inzynierkamvc.controllers.DataBaseController;
 import com.example.zolwo_000.inzynierkamvc.DbAdapter;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.GameModeType;
-import com.example.zolwo_000.inzynierkamvc.HintType;
-import com.example.zolwo_000.inzynierkamvc.Level;
-import com.example.zolwo_000.inzynierkamvc.Views.FView;
+import com.example.zolwo_000.inzynierkamvc.enumerators.GameModeType;
+import com.example.zolwo_000.inzynierkamvc.enumerators.HintType;
+import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
+import com.example.zolwo_000.inzynierkamvc.views.FView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by zolwo_000 on 17.11.2015.
@@ -164,7 +162,7 @@ public class GameModel extends FModel<FView> {
             while(cursorPhotos.moveToNext()) {
                 PhotoModel photo = new PhotoModel(cursorPhotos.getString(0));
                 photo.setImageViewInTable(activity);
-        
+
                 nameList.add(photo);
             }
 

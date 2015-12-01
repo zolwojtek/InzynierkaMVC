@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 
-import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
-import com.example.zolwo_000.inzynierkamvc.Level;
+import com.example.zolwo_000.inzynierkamvc.controllers.DataBaseController;
+import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
 
 /**
  * Created by zolwo_000 on 18.11.2015.

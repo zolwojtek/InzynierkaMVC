@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.sqlCreate;
+package com.example.zolwo_000.inzynierkamvc.notUsed.sqlCreate;
 
 /**
  * Created by zolwo_000 on 28.11.2015.

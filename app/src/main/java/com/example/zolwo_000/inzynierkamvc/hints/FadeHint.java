@@ -1,6 +1,7 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.hints;
 
-import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
@@ -14,16 +15,13 @@ public class FadeHint implements Hint {
         int displayedCategoriesNumber = gameController.getDisplayedCategoriesNumber();
 
         CategoryModel categoryToLearn = gameController.getCategoryToLearn();
-        String categoryToLearnname = categoryToLearn.getName();
+        String categoryToLearName = categoryToLearn.getName();
         CategoryModel[] displayedCategories = gameController.getDisplayedCategories();
         for (int i = 0; i < displayedCategoriesNumber; i++) {
-            if(!displayedCategories[i].getName().equals(categoryToLearnname)) {
+            if(!displayedCategories[i].getName().equals(categoryToLearName)) {
                 PhotoModel photo = displayedCategories[i].getDisplayedPhoto();
                 photo.setPhotoAlpha(50);
             }
         }
-
-
-        //categoryToLearn.getDisplayedPhoto().setPhotoAlpha(100);
     }
 }

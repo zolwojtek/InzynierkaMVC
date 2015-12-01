@@ -1,16 +1,16 @@
-package com.example.zolwo_000.inzynierkamvc.Controllers;
+package com.example.zolwo_000.inzynierkamvc.controllers;
 
-import com.example.zolwo_000.inzynierkamvc.CategoryType;
+import com.example.zolwo_000.inzynierkamvc.enumerators.CategoryType;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.GameMode;
-import com.example.zolwo_000.inzynierkamvc.GameModeFactory;
-import com.example.zolwo_000.inzynierkamvc.GameModeType;
-import com.example.zolwo_000.inzynierkamvc.Hint;
-import com.example.zolwo_000.inzynierkamvc.HintFactory;
-import com.example.zolwo_000.inzynierkamvc.HintType;
-import com.example.zolwo_000.inzynierkamvc.Level;
-import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
-import com.example.zolwo_000.inzynierkamvc.Timer;
+import com.example.zolwo_000.inzynierkamvc.gameModes.GameMode;
+import com.example.zolwo_000.inzynierkamvc.gameModes.GameModeFactory;
+import com.example.zolwo_000.inzynierkamvc.enumerators.GameModeType;
+import com.example.zolwo_000.inzynierkamvc.hints.Hint;
+import com.example.zolwo_000.inzynierkamvc.hints.HintFactory;
+import com.example.zolwo_000.inzynierkamvc.enumerators.HintType;
+import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
+import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
+import com.example.zolwo_000.inzynierkamvc.utils.Timer;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;

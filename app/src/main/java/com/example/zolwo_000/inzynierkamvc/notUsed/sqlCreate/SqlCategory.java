@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.sqlCreate;
+package com.example.zolwo_000.inzynierkamvc.notUsed.sqlCreate;
 
 public final class SqlCategory extends BaseSQL{
 

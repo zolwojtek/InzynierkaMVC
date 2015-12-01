@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.Views;
+package com.example.zolwo_000.inzynierkamvc.views;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
 
-import com.example.zolwo_000.inzynierkamvc.AnimationManager;
-import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
+import com.example.zolwo_000.inzynierkamvc.utils.AnimationManager;
+import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.GameMode;
+import com.example.zolwo_000.inzynierkamvc.gameModes.GameMode;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.CorrectAnswerSoundModel;
@@ -28,15 +28,17 @@ public class CorrectAnswerActivity extends Activity {
         setContentView(R.layout.activity_correct_answer);
         activity = this;
 
-
-        playApplause();
         exposeRightPhoto();
         photoAnimation();
+        playApplause();
+        //-----------TO DO------------
+        //ZABLOKOWAC UI DOPOKI NIE SKONCZY MOWIC
 
         ImageButton nextTryImageButton = (ImageButton) activity.findViewById(R.id.nextTryImageButton);
         nextTryImageButton.setOnClickListener(nextTryClickListener);
         nextTryImageButton.bringToFront();
-        //nextTryImageButton.setVisibility(View.VISIBLE);
+        //-----------TO DO------------
+        //UKRYTE MIEJSCE, GDZIE JAK SIE DOTKNIE MULTI-TOUCHEM, POWTARZANE JEST DOKLADNIE TAKIE SAMO CWICZENIE (BRAK JAKICHKOLWIEK ZMIAN USTAWIEN)
 
         ImageButton soundTubeImageButton = (ImageButton) this.findViewById(R.id.soundTubeImageButton);
         soundTubeImageButton.setOnClickListener(soundTubeClickListener);

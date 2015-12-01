@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc;
+package com.example.zolwo_000.inzynierkamvc.enumerators;
 
 /**
  * Created by Ola on 2015-10-28.

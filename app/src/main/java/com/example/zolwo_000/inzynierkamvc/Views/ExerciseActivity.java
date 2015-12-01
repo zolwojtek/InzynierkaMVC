@@ -1,9 +1,10 @@
-package com.example.zolwo_000.inzynierkamvc.Views;
+package com.example.zolwo_000.inzynierkamvc.views;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,11 +14,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
-import com.example.zolwo_000.inzynierkamvc.ExerciseInitializeParameters;
+import com.example.zolwo_000.inzynierkamvc.controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
-import com.example.zolwo_000.inzynierkamvc.Level;
-import com.example.zolwo_000.inzynierkamvc.PhotoParameters;
+import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
@@ -26,31 +25,31 @@ import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
 public class ExerciseActivity extends Activity implements FView<GameModel> {
 
-    //static int a = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         activity = this;
 
-        //Wczytujemy plik konfiguracyjny swoj(zapis) oraz aplikacji terapeuty
-        //jesli nie bylo zapisu(pierwszy raz uruchamiana apka)
+        //-----------TO DO------------
+        //TRZEBA DODAC SPRAWDZENIE CZY BYL ZAPIS OSTATNIO CWICZONEJ KATEGORII
         start();
-
-
     }
 
     private void start() {
         GameController gameController = GameApplication.getGameController();
-        //if(a==1)
-        drawGameInterface();
-        //++a;
+        drawGameInterface();// czy da sie to zrobic po odsluchaniu polecenia?? (nie bedzie miec jakich null-pointer references?)...jesli tak, to tak nalezy zrobic
 
         ImageButton soundTube = (ImageButton) activity.findViewById(R.id.buttonSoundTube);
         soundTube.setOnClickListener(soundTubeClickListener);
+
+        //-----------TO DO------------
+        //ZABLOKUJ UI DOPOKI NIE SKONCZY POLECENIA
         soundTubeClickListener.onClick(soundTube);
-        //to dobrze jakby sie dzialo w kontrolerze, nie tutaj...jedna metoda initialize czy cos takiego
-        gameController.startTimer(5, 10); // oczywiscie z ustawien...gameController bedzie to mogl czytac bezposrednio ze skladowanych ustawien, parametry nie beda potrzebne
+
+        //-----------TO DO------------
+        //STARTTIMER POWINIEN CZYTAC PARAMETRY Z POZIOMU WYWOLANIA FUKCJI Z CONFIGURATIONMODEL SKLADOWANEGO W KONTROLERZE
+        gameController.startTimer(5, 10);
         gameController.setSuccessWithFirstTry(true);
     }
 
@@ -83,8 +82,6 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
 
 
     private void drawGameInterface() {
-        ImageButton soundTube = (ImageButton) this.findViewById(R.id.buttonSoundTube);
-
         Display display = this.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -101,11 +98,8 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         int photoWidth = 0;
         int photoHeight = 0;
 
-
-
         GameController gameController = GameApplication.getGameController();
         int displayedCategoriesNumber = gameController.getDisplayedCategoriesNumber();
-
 
         switch (displayedCategoriesNumber) {
             case 2:
@@ -141,19 +135,26 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
                 photoHeight = screenHeight/4;
                 break;
         }
-        PhotoParameters photoParameters = new PhotoParameters(photoWidth, photoHeight, rowMargin, columnMargin);
-//        gameController.setPhotosParameters(photoParameters);
-
-
-
-        rows = new TableRow[rowCount];
-        for (int i = 0; i < rowCount; i++) {
-            rows[i] = new TableRow(this);
-            tableLayout.addView(rows[i]);
-        }
-
+        rows = initializeTableRows(tableLayout, rowCount);
         CategoryModel[] displayedCategories = gameController.getDisplayedCategories();
 
+        initializePhotos(rowMargin, columnMargin, photoWidth, photoHeight, gameController, displayedCategories);
+        setPhotosIntoTable(rows, rowCount, photosPerRow, displayedCategories);
+    }
+
+    private void setPhotosIntoTable(TableRow[] rows, int rowCount, int photosPerRow, CategoryModel[] displayedCategories) {
+        int tmp = 0;
+        for(int i = 0; i < rowCount; i++) {
+            for (int j = 0; j < photosPerRow; j++) {
+                PhotoModel photo = displayedCategories[tmp].getDisplayedPhoto();
+                rows[i].addView(photo.getFrameLayout());
+                tmp++;
+            }
+        }
+    }
+
+    private void initializePhotos(int rowMargin, int columnMargin, int photoWidth, int photoHeight, GameController gameController, CategoryModel[] displayedCategories) {
+        PhotoParameters photoParameters = new PhotoParameters(photoWidth, photoHeight, rowMargin, columnMargin);
         for(int i = 0; i < displayedCategories.length; ++i) {
             PhotoModel photo = displayedCategories[i].getDisplayedPhoto();
             photo.setImageViewInTable(this);
@@ -164,39 +165,36 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         CategoryModel correctCategory = gameController.getCategoryToLearn();
         correctCategory.getDisplayedPhoto().setOnClickListener(rightPhotoClickListener);
         askForAnswer(correctCategory.getName());
+    }
 
-        int tmp = 0;
-        for(int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < photosPerRow; j++) {
-                PhotoModel photo = displayedCategories[tmp].getDisplayedPhoto();
-                rows[i].addView(photo.getFrameLayout());
-                tmp++;
-            }
+    @NonNull
+    private TableRow[] initializeTableRows(TableLayout tableLayout, int rowCount) {
+        TableRow[] rows;
+        rows = new TableRow[rowCount];
+        for (int i = 0; i < rowCount; i++) {
+            rows[i] = new TableRow(this);
+            tableLayout.addView(rows[i]);
         }
-
-
-
+        return rows;
     }
 
     Activity activity;
     public View.OnClickListener rightPhotoClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View clickedPhoto) {
-            TextView exerciseDescription = (TextView) findViewById(R.id.questionTextView);
-            exerciseDescription.setText("dobrze");
+            //TextView exerciseDescription = (TextView) findViewById(R.id.questionTextView);
+            //exerciseDescription.setText("dobrze");
             GameController gameController = GameApplication.getGameController();
-
 
             Intent intent = new Intent(ExerciseActivity.this, CorrectAnswerActivity.class);
             gameController.stopTimer();
-
             startActivity(intent);
         }
     };
 
     private void askForAnswer(String name) {
-        TextView excerciseDescription = (TextView) findViewById(R.id.questionTextView);
-        excerciseDescription.setText("Gdzie jest " + name + "?");
+        TextView exerciseDescription = (TextView) findViewById(R.id.questionTextView);
+        exerciseDescription.setText("Gdzie jest " + name + "?");
     }
 
 
@@ -215,9 +213,8 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         @Override
         public void onClick(View clickedPhoto) {
             GameController gameController = GameApplication.getGameController();
-            QuestionSoundModel akedQestion = new QuestionSoundModel();
-
-            akedQestion.play(activity, gameController.getCategoryToLearn(), gameController.getLevel());
+            QuestionSoundModel askedQuestion = new QuestionSoundModel();
+            askedQuestion.play(activity, gameController.getCategoryToLearn(), gameController.getLevel());
         }
     };
 
