@@ -103,7 +103,7 @@ public class CategoryModel extends FModel<FView> {
         this.photosNumber = photosNumber;
     }
 
-    public boolean isUsed() {
+    public boolean getIsUsed() {
         return isUsed;
     }
 

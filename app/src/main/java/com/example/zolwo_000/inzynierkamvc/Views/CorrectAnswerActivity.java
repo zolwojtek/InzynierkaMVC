@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
 
+import com.example.zolwo_000.inzynierkamvc.CorrectAnswerUIBlocker;
+import com.example.zolwo_000.inzynierkamvc.UIBlocker;
 import com.example.zolwo_000.inzynierkamvc.managers.AnimationManager;
 import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
@@ -30,7 +32,10 @@ public class CorrectAnswerActivity extends Activity {
 
         exposeRightPhoto();
         photoAnimation();
-        playApplause();
+
+        CorrectAnswerUIBlocker uiBlocker = new CorrectAnswerUIBlocker();
+        uiBlocker.blockUI(activity, true);
+        playApplause(uiBlocker);
         //-----------TO DO------------
         //ZABLOKOWAC UI DOPOKI NIE SKONCZY MOWIC
 
@@ -50,12 +55,10 @@ public class CorrectAnswerActivity extends Activity {
         gameMode.setPlanForNextExercise();
     }
 
-
-
-    private void playApplause() {
+    private void playApplause(UIBlocker uiBlocker) {
         GameController gameController = GameApplication.getGameController();
         CorrectAnswerSound correctAnswerSound = new CorrectAnswerSound();
-        correctAnswerSound.play(this, gameController.getCategoryToLearn());
+        correctAnswerSound.play(this, gameController.getCategoryToLearn(), uiBlocker);
     }
 
     @Override
@@ -113,7 +116,7 @@ public class CorrectAnswerActivity extends Activity {
     public View.OnClickListener soundTubeClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View clickedPhoto) {
-            playApplause();
+            playApplause(null);
         }
     };
 

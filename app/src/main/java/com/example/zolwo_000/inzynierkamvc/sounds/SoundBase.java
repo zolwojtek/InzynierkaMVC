@@ -3,6 +3,7 @@ package com.example.zolwo_000.inzynierkamvc.sounds;
 import android.app.Activity;
 import android.media.MediaPlayer;
 
+import com.example.zolwo_000.inzynierkamvc.UIBlocker;
 import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 
@@ -18,6 +19,12 @@ public abstract class SoundBase {
     public void play(Activity activity, CategoryModel category, Level level) {
     }
 
+    public void play(Activity activity, CategoryModel category, UIBlocker UIBlocker) {
+    }
+
+    public void play(Activity activity, CategoryModel category, Level level, UIBlocker UIBlocker) {
+    }
+
     public void stop() {
         mediaPlayer.stop();
     }
@@ -25,6 +32,4 @@ public abstract class SoundBase {
         mediaPlayer.reset();
         mediaPlayer.release();
     }
-
-
 }

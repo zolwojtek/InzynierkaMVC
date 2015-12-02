@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 
 import com.example.zolwo_000.inzynierkamvc.Controllers.DataBaseController;
+import com.example.zolwo_000.inzynierkamvc.UIBlocker;
 import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
 import com.example.zolwo_000.inzynierkamvc.sounds.SoundBase;
 
@@ -24,7 +25,7 @@ public class CategorySound extends SoundBase {
     }
 
     @Override
-    public void play(Activity activity, CategoryModel category, Level level) {
+    public void play(final Activity activity, CategoryModel category, final Level level, final UIBlocker UIBlocker) {
 
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.openDataBase();
@@ -43,6 +44,9 @@ public class CategorySound extends SoundBase {
         mediaPlayer = MediaPlayer.create(activity, uri);
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(MediaPlayer player) {
+                if (UIBlocker != null){
+                    UIBlocker.blockUI(activity, false);
+                }
                 destroy();
             }
         });

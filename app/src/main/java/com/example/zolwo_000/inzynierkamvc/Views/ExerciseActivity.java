@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
+import com.example.zolwo_000.inzynierkamvc.GameUIBlocker;
+import com.example.zolwo_000.inzynierkamvc.UIBlocker;
 import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
@@ -24,6 +26,9 @@ import com.example.zolwo_000.inzynierkamvc.sounds.QuestionSound;
 import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 
 public class ExerciseActivity extends Activity implements FView<GameModel> {
+
+    QuestionSound askedQuestion;
+    GameUIBlocker uiBlocker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,10 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
 
         //-----------TO DO------------
         //ZABLOKUJ UI DOPOKI NIE SKONCZY POLECENIA
+        uiBlocker = new GameUIBlocker();
+        uiBlocker.blockUI(activity, true);
         soundTubeClickListener.onClick(soundTube);
+        uiBlocker = null;
 
         //-----------TO DO------------
         //STARTTIMER POWINIEN CZYTAC PARAMETRY Z POZIOMU WYWOLANIA FUKCJI Z CONFIGURATIONMODEL SKLADOWANEGO W KONTROLERZE
@@ -213,10 +221,8 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         @Override
         public void onClick(View clickedPhoto) {
             GameController gameController = GameApplication.getGameController();
-            QuestionSound askedQuestion = new QuestionSound();
-            askedQuestion.play(activity, gameController.getCategoryToLearn(), gameController.getLevel());
+            askedQuestion = new QuestionSound();
+            askedQuestion.play(activity, gameController.getCategoryToLearn(), gameController.getLevel(), uiBlocker);
         }
     };
-
-
 }

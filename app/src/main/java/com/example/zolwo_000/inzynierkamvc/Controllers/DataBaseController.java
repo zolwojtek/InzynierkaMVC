@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class DataBaseController {
     //String dataBasePath = "/data/data/com.example.zolow_000.inzynierkamvc/databases/db.s3db";
-    String dataBasePath = "/data/data/com.example.klaudia.configapp/databases/db.s3db";
+    //String dataBasePath = "/data/data/com.example.klaudia.configapp/databases/db.s3db";
+    String dataBasePath = "/data/InzynierkaPliki/db.s3db";
     SQLiteDatabase db;
 
     public void openDataBase() {
