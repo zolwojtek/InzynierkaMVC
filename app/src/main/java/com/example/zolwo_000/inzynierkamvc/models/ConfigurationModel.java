@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.sounds;
+package com.example.zolwo_000.inzynierkamvc.models;
 
 
 
@@ -13,6 +13,7 @@ public class ConfigurationModel {
     private String hintType = "";
     private String level = "poziom1";
     private String proportions = "1:0";
+    private boolean generalization = false;
     public String type = "";
 
     public ConfigurationModel() {}
@@ -66,5 +67,13 @@ public class ConfigurationModel {
 
     public void setProportions(String proportions) {
         this.proportions = proportions;
+    }
+
+    public boolean isGeneralization() {
+        return generalization;
+    }
+
+    public void setGeneralization(boolean generalization) {
+        this.generalization = generalization;
     }
 }

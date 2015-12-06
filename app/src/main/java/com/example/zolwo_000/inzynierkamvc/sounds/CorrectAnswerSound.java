@@ -21,7 +21,7 @@ public class CorrectAnswerSound extends SoundBase {
             public void onCompletion(MediaPlayer player) {
                 destroy();
                 CategorySound categorySound = new CategorySound();
-                categorySound.play(activity, category, Level.LEVEL0, uiBlocker);
+                categorySound.play(activity, category, Level.LEVEL1, uiBlocker);
             }
         });
         mediaPlayer.start();

@@ -30,10 +30,28 @@ public class GameModel extends FModel<FView> {
     private Level level;
     private HintType hintType;
     private GameModeType gameModeType;
+    private int responseTime = 5;
+    private  boolean generalization;// = false;
 
     public GameModel() {
         //wczytywanie kategorii i zdjec
         //addCategories();
+    }
+
+    public boolean isGeneralization() {
+        return generalization;
+    }
+
+    public void setGeneralization(boolean generalization) {
+        this.generalization = generalization;
+    }
+
+    public int getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(int responseTime) {
+        this.responseTime = responseTime;
     }
 
     public GameModeType getGameModeType() {
@@ -153,32 +171,49 @@ public class GameModel extends FModel<FView> {
         Cursor cursorCategories = dataBaseController.loadCategories();
         Cursor cursorPhotos;
         String base;
+        String categoryState;
+        boolean isGeneralization = this.generalization;
+        String set;
 
         while(cursorCategories.moveToNext()) {
             nameList = new ArrayList<>();
             base = cursorCategories.getString(0);
             cursorPhotos = dataBaseController.loadPhotosPath(base);
 
-            while(cursorPhotos.moveToNext()) {
-                PhotoModel photo = new PhotoModel(cursorPhotos.getString(0));
-                photo.setImageViewInTable(activity);
 
-                nameList.add(photo);
+            while(cursorPhotos.moveToNext()) {
+                set = cursorPhotos.getString(1);
+                if((set.equals("generalizacji") && isGeneralization) || (set.equals("uczacy") && !isGeneralization)) {
+                    PhotoModel photo = new PhotoModel(cursorPhotos.getString(0));
+                    photo.setImageViewInTable(activity);
+                    nameList.add(photo);
+                }
             }
 
             CategoryModel catTmp = new CategoryModel();
             catTmp.setName(base);
             catTmp.setPhotosList(nameList);
-            catTmp.setPhotosNumber(cursorPhotos.getCount());
+            //catTmp.setPhotosNumber(cursorPhotos.getCount());
+            catTmp.setPhotosNumber(nameList.size());
 
             categoryController.setRandomPhotoForCategory(catTmp);
+            categoryState = cursorCategories.getString(1);
 
-            nouns.add(catTmp);
-            categoriesToLearn.add(catTmp);
+            if(categoryState.equals("do nauki")) {
+                categoriesToLearn.add(catTmp);
+                nouns.add(catTmp);
+            } else {
+                if(!categoryState.equals("pominiete")) {
+                    nouns.add(catTmp);
+                }
+            }
+
+
+
         }
         allCategories.add(nouns);
         this.partsOfSpeech = allCategories;
-        this.categoriesToLearn = nouns;
+        this.categoriesToLearn = categoriesToLearn;
     }
 
 /*        String base = "lalka";

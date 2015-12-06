@@ -18,17 +18,17 @@ public class QuestionSound extends SoundBase {
 
         int resId = 0;
         switch(level) {
-            case LEVEL0:
+            case LEVEL1:
             {
                 resId = activity.getResources().getIdentifier("pusty", "raw", activity.getPackageName());
                 break;
             }
-            case LEVEL1:
+            case LEVEL2:
             {
                 resId = activity.getResources().getIdentifier("exercise1", "raw", activity.getPackageName());
                 break;
             }
-            case LEVEL2:
+            case LEVEL3:
             {
                 resId = activity.getResources().getIdentifier("exercise2", "raw", activity.getPackageName());
                 break;

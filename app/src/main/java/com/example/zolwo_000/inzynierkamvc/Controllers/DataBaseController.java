@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by Ola on 2015-11-21.
  */
 public class DataBaseController {
-    //String dataBasePath = "/data/data/com.example.zolow_000.inzynierkamvc/databases/db.s3db";
+    String dataBasePath = "/data/data/com.example.zolow_000.inzynierkamvc/databases/db.s3db";
     //String dataBasePath = "/data/data/com.example.klaudia.configapp/databases/db.s3db";
-    String dataBasePath = "/data/InzynierkaPliki/db.s3db";
+   //String dataBasePath = "/data/InzynierkaPliki/db.s3db";
     SQLiteDatabase db;
 
     public void openDataBase() {
@@ -25,7 +25,7 @@ public class DataBaseController {
     }
 
     public Cursor loadCategories() {
-        String column[] = {"Nazwa"};
+        String column[] = {"Nazwa, Stan"};
         try {
             return db.query("KATEGORIA", column, null, null, null, null, null, null);
         }
@@ -36,7 +36,7 @@ public class DataBaseController {
     }
 
     public Cursor loadPhotosPath(String category) {
-        String column[] = {"Grafika"};
+        String column[] = {"Grafika, Zbior"};
         String where_clause = "Kategoria='"+category+"'";
 
         return db.query("OBRAZ", column, where_clause, null, null, null, null, null);

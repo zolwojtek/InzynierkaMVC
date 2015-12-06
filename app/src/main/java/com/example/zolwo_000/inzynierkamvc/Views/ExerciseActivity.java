@@ -48,6 +48,13 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         ImageButton soundTube = (ImageButton) activity.findViewById(R.id.buttonSoundTube);
         soundTube.setOnClickListener(soundTubeClickListener);
 
+        //TYMCZASOWE//
+        CategoryModel[] displayedCategories = gameController.getDisplayedCategories();
+        for(int i = 0; i < displayedCategories.length; ++i) {
+            displayedCategories[i].getDisplayedPhoto().getImageView().setVisibility(View.GONE);
+        }
+        ////
+
         //-----------TO DO------------
         //ZABLOKUJ UI DOPOKI NIE SKONCZY POLECENIA
         uiBlocker = new GameUIBlocker();
@@ -55,9 +62,11 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         soundTubeClickListener.onClick(soundTube);
         uiBlocker = null;
 
+
+
         //-----------TO DO------------
         //STARTTIMER POWINIEN CZYTAC PARAMETRY Z POZIOMU WYWOLANIA FUKCJI Z CONFIGURATIONMODEL SKLADOWANEGO W KONTROLERZE
-        gameController.startTimer(5, 10);
+        gameController.startTimer();
         gameController.setSuccessWithFirstTry(true);
     }
 

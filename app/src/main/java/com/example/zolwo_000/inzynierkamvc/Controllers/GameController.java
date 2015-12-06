@@ -12,7 +12,7 @@ import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
 import com.example.zolwo_000.inzynierkamvc.utils.PhotoParameters;
 import com.example.zolwo_000.inzynierkamvc.utils.Timer;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
-import com.example.zolwo_000.inzynierkamvc.sounds.ConfigurationModel;
+import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 
 import java.util.List;
@@ -32,16 +32,8 @@ public class GameController extends FController<GameModel> {
     private int triesNumber;
     private int successesWithFirstTryNumber;
 
-    public void initializeExercise(ConfigurationModel nounConfig) {
-        //obiekt params powinien byc zapisywany
-        int displayedCategoriesNumber = nounConfig.getDisplayCount();
-        Level level = Level.LEVEL1;
-        HintType hintType = HintType.valueOf(nounConfig.getHintType().toUpperCase());
-        GameModeType gameModeType = GameModeType.valueOf(nounConfig.getMode().toUpperCase());
-        this.model.setGameModeType(gameModeType);
-        this.model.setHintType(hintType);
-        this.model.setDisplayedPhotosNumber(displayedCategoriesNumber);
-        this.model.setLevel(level);
+    public void initializeExercise() {
+
 
         //int[] photosOrder = getSimpleOrder(displayedCategoriesNumber);
         //this.model.setPhotosOrder(photosOrder);
@@ -53,6 +45,29 @@ public class GameController extends FController<GameModel> {
 
 
         //gameMode = new TherapistMode();
+    }
+
+    public void initializeConfiguration(ConfigurationModel nounConfig) {
+        //DISPLAYED CATEGORIES NUMBER
+        int displayedCategoriesNumber = nounConfig.getDisplayCount();
+        //LEVEL
+        Level level = Level.valueOf(nounConfig.getLevel().toUpperCase());
+        //HINT TYPE
+        HintType hintType = HintType.valueOf(nounConfig.getHintType().toUpperCase());
+        //GAME MODE
+        GameModeType gameModeType = GameModeType.valueOf(nounConfig.getMode().toUpperCase());
+        //TIME TILL SHOWING HINT
+        int responseTime = nounConfig.getResponseTime();
+        //GENERALIZATION
+        boolean isGeneralization = nounConfig.isGeneralization();
+
+
+        this.model.setGameModeType(gameModeType);
+        this.model.setHintType(hintType);
+        this.model.setDisplayedPhotosNumber(displayedCategoriesNumber);
+        this.model.setLevel(level);
+        this.model.setResponseTime(responseTime);
+        this.model.setGeneralization(isGeneralization);
     }
 
     public GameMode getGameMode() {
@@ -258,9 +273,10 @@ public class GameController extends FController<GameModel> {
 
     private Timer timer = null;
 
-    public void startTimer(int timeForHint, int timeForAnswer) {
+    public void startTimer() {
+        int timeForHint = this.model.getResponseTime();
         timer = new Timer();
-        timer.execute(timeForHint, timeForAnswer);
+        timer.execute(timeForHint);
     }
 
     public void stopTimer() {

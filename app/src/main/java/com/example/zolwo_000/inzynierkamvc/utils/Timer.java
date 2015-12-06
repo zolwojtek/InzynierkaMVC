@@ -15,7 +15,7 @@ public class Timer extends AsyncTask<Integer, Void, Void> {
         try {
             Thread.sleep(params[0] * 1000);
             publishProgress();
-            Thread.sleep(params[1] * 1000);
+            Thread.sleep(params[0] * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

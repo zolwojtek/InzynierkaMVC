@@ -17,7 +17,7 @@ import com.example.zolwo_000.inzynierkamvc.Controllers.GameController;
 import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.R;
 import com.example.zolwo_000.inzynierkamvc.managers.PreferencesManager;
-import com.example.zolwo_000.inzynierkamvc.sounds.ConfigurationModel;
+import com.example.zolwo_000.inzynierkamvc.models.ConfigurationModel;
 import com.example.zolwo_000.inzynierkamvc.models.GameModel;
 
 public class MainManuActivity extends Activity implements FView<GameModel> {
@@ -27,16 +27,18 @@ public class MainManuActivity extends Activity implements FView<GameModel> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_manu);
         GameController gameController = GameApplication.getGameController();
-        GameModel gameModel = GameApplication.getGameModel();
 
         Context context;
         context = getTherapistContext();
         ConfigurationModel config = getConfigurationModel(context);
+        gameController.initializeConfiguration(config);
+
+        GameModel gameModel = GameApplication.getGameModel();
 
         gameModel.addView(this);
         gameModel.setActivity(this);
         gameModel.addCategories();
-        gameController.initializeExercise(config);
+        gameController.initializeExercise();
 
         LinearLayout buttonsLayout = (LinearLayout) findViewById(R.id.buttonsLayout);
         buttonsLayout.setOrientation(LinearLayout.VERTICAL);
