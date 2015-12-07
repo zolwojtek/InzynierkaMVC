@@ -12,20 +12,41 @@ public class AutomaticMode implements GameMode {
         GameController gameController = GameApplication.getGameController();
         boolean successWithFirstTry = gameController.isSuccessWithFirstTry();
         boolean previousSuccess = gameController.wasPreviousSuccessWithFirstTry();
-        int triesNumber = gameController.getTriesNumber();
-        int successesNumber = gameController.getSuccessesWithFirstTryNumber();
+        int triesNumber;
+        int successesNumber;
+        boolean automaticGeneralization = gameController.isAutomaticGeneralization();
 
-        if(successWithFirstTry && previousSuccess) {
+
+        if(successWithFirstTry) {
+            if(previousSuccess) {
+                gameController.incrementSuccessesWithFirstTryNumber();
+            }
+            gameController.changePhotosOrder();
+            gameController.changePhotosForAllDisplayedCategories(automaticGeneralization);
+        }
+        gameController.incrementTriesNumber();
+        successesNumber = gameController.getSuccessesWithFirstTryNumber();
+        triesNumber = gameController.getTriesNumber();
+
+
+        /*if(successWithFirstTry && previousSuccess) {
             gameController.incrementSuccessesWithFirstTryNumber();
             gameController.changePhotosOrder();
             gameController.changePhotosForAllDisplayedCategories();
         }
         gameController.incrementTriesNumber();
+        triesNumber = gameController.getTriesNumber();
+        successesNumber = gameController.getSuccessesWithFirstTryNumber();*/
 
-        int param = 1; //to będzie do ustawienia
-        if(triesNumber == param) {
-            if (successesNumber == param) {
-                gameController.changeCategoryToLearn();
+        int param = gameController.getAutomaticRepeats(); //to będzie do ustawienia
+        if(successWithFirstTry && triesNumber >= param) {
+            if (successesNumber == param && successesNumber == triesNumber) {
+                if(automaticGeneralization) {
+                    gameController.changeCategoryToLearn();
+                    gameController.setAutomaticGeneralization(false);
+                } else {
+                    gameController.setAutomaticGeneralization(true);
+                }
             }
 
             gameController.setSuccessesWithFirstTryNumber(0);

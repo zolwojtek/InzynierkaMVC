@@ -16,7 +16,7 @@ public class TherapistMode implements GameMode {
         if(successWithFirstTry) {
             //ta sama kategoria, inne zdjecia i kolejnosc
             gameController.changePhotosOrder();
-            gameController.changePhotosForAllDisplayedCategories();
+            gameController.changePhotosForAllDisplayedCategories(gameController.isGeneralization());
         } else {
             //powtorz dokladnie to samo
             //terapeyta bedzie mial przycisk, ze nawet przy dobrej odpowiedzi bedzie mogl powtorzyc dokladnie to samo

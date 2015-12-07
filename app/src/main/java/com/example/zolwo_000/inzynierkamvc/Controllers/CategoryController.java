@@ -12,10 +12,19 @@ import java.util.Random;
  * Created by zolwo_000 on 17.11.2015.
  */
 public class CategoryController {
-    public void setRandomPhotoForCategory(CategoryModel category) {
-        List<PhotoModel> photosList = category.getPhotosList();
+    public void setRandomPhotoForCategory(CategoryModel category, boolean generalization) {
+        List<PhotoModel> photosList;
+        int photosNumber;
+        if(generalization) {
+            photosList = category.getPhotosGeneralizationSet();
+            photosNumber = category.getPhotosGeneralizationNumber();
+        } else {
+            photosList = category.getPhotosLearningSet();
+            photosNumber = category.getPhotosLearningNumber();
+        }
+
         Random random = GameApplication.getRandom();
-        int photosNumber = category.getPhotosNumber();
+        //int photosNumber = category.getPhotosNumber();
         if(photosNumber == 0) {
             return; //jesli nie bedzie zadnego zdjecia...zeby apki nie wywalalo
         }

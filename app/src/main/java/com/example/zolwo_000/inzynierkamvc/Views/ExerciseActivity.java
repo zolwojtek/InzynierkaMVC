@@ -1,8 +1,11 @@
 package com.example.zolwo_000.inzynierkamvc.Views;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Display;
@@ -40,7 +43,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         //TRZEBA DODAC SPRAWDZENIE CZY BYL ZAPIS OSTATNIO CWICZONEJ KATEGORII
         start();
     }
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void start() {
         GameController gameController = GameApplication.getGameController();
         drawGameInterface();// czy da sie to zrobic po odsluchaniu polecenia?? (nie bedzie miec jakich null-pointer references?)...jesli tak, to tak nalezy zrobic
@@ -52,6 +55,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         CategoryModel[] displayedCategories = gameController.getDisplayedCategories();
         for(int i = 0; i < displayedCategories.length; ++i) {
             displayedCategories[i].getDisplayedPhoto().getImageView().setVisibility(View.GONE);
+            displayedCategories[i].getDisplayedPhoto().getFrameLayout().setBackgroundColor(Color.WHITE);
         }
         ////
 

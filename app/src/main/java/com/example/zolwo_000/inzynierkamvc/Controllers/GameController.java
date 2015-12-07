@@ -31,17 +31,21 @@ public class GameController extends FController<GameModel> {
     private boolean previousSuccessWithFirstTry;
     private int triesNumber;
     private int successesWithFirstTryNumber;
+    private boolean automaticGeneralization;
 
     public void initializeExercise() {
 
-
+        //CategoryController categoryController = GameApplication.getCategoryController();
         //int[] photosOrder = getSimpleOrder(displayedCategoriesNumber);
         //this.model.setPhotosOrder(photosOrder);
         setCategoryToLearn();
+        changePhotoForCurrentCategory(isGeneralization());
         setFakeCategories();
+        changePhotosForFakeCategories();
         triesNumber = 0;
         successesWithFirstTryNumber = 0;
         previousSuccessWithFirstTry = true;
+        automaticGeneralization = false;
 
 
         //gameMode = new TherapistMode();
@@ -60,6 +64,8 @@ public class GameController extends FController<GameModel> {
         int responseTime = nounConfig.getResponseTime();
         //GENERALIZATION
         boolean isGeneralization = nounConfig.isGeneralization();
+        //AUTOMATIC REPEATS
+        int automaticRepeats = nounConfig.getAutomaticRepeats();
 
 
         this.model.setGameModeType(gameModeType);
@@ -68,6 +74,23 @@ public class GameController extends FController<GameModel> {
         this.model.setLevel(level);
         this.model.setResponseTime(responseTime);
         this.model.setGeneralization(isGeneralization);
+        this.model.setAutomaticRepeats(automaticRepeats);
+    }
+
+    public int getAutomaticRepeats() {
+        return this.model.getAutomaticRepeats();
+    }
+
+    public boolean isAutomaticGeneralization() {
+        return automaticGeneralization;
+    }
+
+    public void setAutomaticGeneralization(boolean automaticGeneralization) {
+        this.automaticGeneralization = automaticGeneralization;
+    }
+
+    public boolean isGeneralization() {
+        return this.model.isGeneralization();
     }
 
     public GameMode getGameMode() {
@@ -224,16 +247,18 @@ public class GameController extends FController<GameModel> {
 
         newCategory.setIsUsed(true);
         this.model.setCurrentCategory(newCategory);
-        setFakeCategories();
+        changePhotoForCurrentCategory(isGeneralization());
 
+        setFakeCategories();
+        changePhotosForFakeCategories();
     }
 
 
 
-    public void changePhotoForCurrentCategory() {
+    public void changePhotoForCurrentCategory(boolean generalization) {
         CategoryModel currentCategory = this.model.getCurrentCategory();
         CategoryController categoryController = GameApplication.getCategoryController();
-        categoryController.setRandomPhotoForCategory(currentCategory);
+        categoryController.setRandomPhotoForCategory(currentCategory, generalization);
     }
 
     public void changePhotosForFakeCategories() {
@@ -244,13 +269,13 @@ public class GameController extends FController<GameModel> {
         int displayedCategoriesSize = displayedCategories.length;
         for(int i = 0 ;i < displayedCategoriesSize; ++i) {
             if(!displayedCategories[i].getName().equals(currentCategory.getName())) {
-                categoryController.setRandomPhotoForCategory(displayedCategories[i]);
+                categoryController.setRandomPhotoForCategory(displayedCategories[i],false);
             }
         }
     }
 
-    public void changePhotosForAllDisplayedCategories() {
-        changePhotoForCurrentCategory();
+    public void changePhotosForAllDisplayedCategories(boolean generalization) {
+        changePhotoForCurrentCategory(generalization);
         changePhotosForFakeCategories();
     }
 

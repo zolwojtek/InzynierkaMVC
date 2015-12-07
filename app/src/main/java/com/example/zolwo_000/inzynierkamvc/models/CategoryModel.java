@@ -19,9 +19,26 @@ public class CategoryModel extends FModel<FView> {
     private String audio1 = "";
     private String audio2 = "";
     private String name = null;
-    private int photosNumber;
+    //private int photosNumber;
+    private int photosGeneralizationNumber;
+    private int photosLearningNumber;
     private boolean isUsed = false;
 
+    public int getPhotosGeneralizationNumber() {
+        return photosGeneralizationNumber;
+    }
+
+    public void setPhotosGeneralizationNumber(int photosGeneralizationNumber) {
+        this.photosGeneralizationNumber = photosGeneralizationNumber;
+    }
+
+    public int getPhotosLearningNumber() {
+        return photosLearningNumber;
+    }
+
+    public void setPhotosLearningNumber(int photosLearningNumber) {
+        this.photosLearningNumber = photosLearningNumber;
+    }
 
     public List<PhotoModel> getPhotosLearningSet() {
         return photosLearningSet;
@@ -95,13 +112,13 @@ public class CategoryModel extends FModel<FView> {
         this.name = name;
     }
 
-    public int getPhotosNumber() {
-        return photosNumber;
-    }
-
-    public void setPhotosNumber(int photosNumber) {
-        this.photosNumber = photosNumber;
-    }
+//    public int getPhotosNumber() {
+//        return photosNumber;
+//    }
+//
+//    public void setPhotosNumber(int photosNumber) {
+//        this.photosNumber = photosNumber;
+//    }
 
     public boolean getIsUsed() {
         return isUsed;

@@ -31,11 +31,20 @@ public class GameModel extends FModel<FView> {
     private HintType hintType;
     private GameModeType gameModeType;
     private int responseTime = 5;
-    private  boolean generalization;// = false;
+    private boolean generalization;// = false;
+    private int automaticRepeats;
 
     public GameModel() {
         //wczytywanie kategorii i zdjec
         //addCategories();
+    }
+
+    public int getAutomaticRepeats() {
+        return automaticRepeats;
+    }
+
+    public void setAutomaticRepeats(int automaticRepeats) {
+        this.automaticRepeats = automaticRepeats;
     }
 
     public boolean isGeneralization() {
@@ -135,7 +144,8 @@ public class GameModel extends FModel<FView> {
         ArrayList<PhotoModel> nameList;// = new ArrayList<>();
 
 
-
+        ArrayList<PhotoModel> photosGeneralizationList;
+        ArrayList<PhotoModel> photosLearningList;
 
 
         List<CategoryModel> categories;
@@ -177,16 +187,28 @@ public class GameModel extends FModel<FView> {
 
         while(cursorCategories.moveToNext()) {
             nameList = new ArrayList<>();
+            photosGeneralizationList = new ArrayList<>();
+            photosLearningList = new ArrayList<>();
+
             base = cursorCategories.getString(0);
             cursorPhotos = dataBaseController.loadPhotosPath(base);
 
 
             while(cursorPhotos.moveToNext()) {
                 set = cursorPhotos.getString(1);
-                if((set.equals("generalizacji") && isGeneralization) || (set.equals("uczacy") && !isGeneralization)) {
+               /* if((set.equals("generalizacji") && isGeneralization) || (set.equals("uczacy") && !isGeneralization)) {
                     PhotoModel photo = new PhotoModel(cursorPhotos.getString(0));
                     photo.setImageViewInTable(activity);
                     nameList.add(photo);
+                }*/
+                if(set.equals("generalizacji")) {
+                    PhotoModel photo = new PhotoModel(cursorPhotos.getString(0));
+                    photo.setImageViewInTable(activity);
+                    photosGeneralizationList.add(photo);
+                } else if(set.equals("uczacy")) {
+                    PhotoModel photo = new PhotoModel(cursorPhotos.getString(0));
+                    photo.setImageViewInTable(activity);
+                    photosLearningList.add(photo);
                 }
             }
 
@@ -194,9 +216,14 @@ public class GameModel extends FModel<FView> {
             catTmp.setName(base);
             catTmp.setPhotosList(nameList);
             //catTmp.setPhotosNumber(cursorPhotos.getCount());
-            catTmp.setPhotosNumber(nameList.size());
+            //catTmp.setPhotosNumber(nameList.size());
 
-            categoryController.setRandomPhotoForCategory(catTmp);
+            catTmp.setPhotosGeneralizationSet(photosGeneralizationList);
+            catTmp.setPhotosGeneralizationNumber(photosGeneralizationList.size());
+            catTmp.setPhotosLearningSet(photosLearningList);
+            catTmp.setPhotosLearningNumber(photosLearningList.size());
+
+            //categoryController.setRandomPhotoForCategory(catTmp);
             categoryState = cursorCategories.getString(1);
 
             if(categoryState.equals("do nauki")) {
@@ -207,8 +234,6 @@ public class GameModel extends FModel<FView> {
                     nouns.add(catTmp);
                 }
             }
-
-
 
         }
         allCategories.add(nouns);

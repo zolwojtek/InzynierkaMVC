@@ -30,16 +30,20 @@ public class CorrectAnswerActivity extends Activity {
         setContentView(R.layout.activity_correct_answer);
         activity = this;
 
+        ImageButton nextTryImageButton = (ImageButton) activity.findViewById(R.id.nextTryImageButton);
+        nextTryImageButton.setVisibility(View.GONE);
+
         exposeRightPhoto();
         photoAnimation();
 
         CorrectAnswerUIBlocker uiBlocker = new CorrectAnswerUIBlocker();
         uiBlocker.blockUI(activity, true);
         playApplause(uiBlocker);
+
         //-----------TO DO------------
         //ZABLOKOWAC UI DOPOKI NIE SKONCZY MOWIC
 
-        ImageButton nextTryImageButton = (ImageButton) activity.findViewById(R.id.nextTryImageButton);
+        //ImageButton nextTryImageButton = (ImageButton) activity.findViewById(R.id.nextTryImageButton);
         nextTryImageButton.setOnClickListener(nextTryClickListener);
         nextTryImageButton.bringToFront();
         //-----------TO DO------------
@@ -104,7 +108,8 @@ public class CorrectAnswerActivity extends Activity {
 
             @Override
             public void onAnimationEnd(Animation arg0) {
-                //buttonNext.setVisibility(View.VISIBLE);
+                ImageButton nextTryImageButton = (ImageButton) activity.findViewById(R.id.nextTryImageButton);
+                nextTryImageButton.setVisibility(View.VISIBLE);
             }
         });
         GameController gameController = GameApplication.getGameController();
