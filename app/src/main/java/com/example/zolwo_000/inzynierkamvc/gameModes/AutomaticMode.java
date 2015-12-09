@@ -46,6 +46,7 @@ public class AutomaticMode implements GameMode {
                     gameController.setAutomaticGeneralization(false);
                 } else {
                     gameController.setAutomaticGeneralization(true);
+                    gameController.changePhotosForAllDisplayedCategories(automaticGeneralization);
                 }
             }
 
