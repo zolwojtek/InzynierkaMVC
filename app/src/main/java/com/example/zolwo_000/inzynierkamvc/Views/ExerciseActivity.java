@@ -185,7 +185,7 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
 
         CategoryModel correctCategory = gameController.getCategoryToLearn();
         correctCategory.getDisplayedPhoto().setOnClickListener(rightPhotoClickListener);
-        askForAnswer(correctCategory.getName());
+        //askForAnswer(correctCategory.getName());
     }
 
     @NonNull
@@ -213,10 +213,10 @@ public class ExerciseActivity extends Activity implements FView<GameModel> {
         }
     };
 
-    private void askForAnswer(String name) {
+   /* private void askForAnswer(String name) {
         TextView exerciseDescription = (TextView) findViewById(R.id.questionTextView);
         exerciseDescription.setText("Gdzie jest " + name + "?");
-    }
+    }*/
 
 
     public View.OnClickListener wrongPhotoClickListener = new View.OnClickListener() {

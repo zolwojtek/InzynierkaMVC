@@ -14,7 +14,8 @@ public class AutomaticMode implements GameMode {
         boolean previousSuccess = gameController.wasPreviousSuccessWithFirstTry();
         int triesNumber;
         int successesNumber;
-        boolean automaticGeneralization = gameController.isAutomaticGeneralization();
+        //boolean automaticGeneralization = gameController.isAutomaticGeneralization();
+        boolean isGeneralization = gameController.isGeneralization();
 
 
         if(successWithFirstTry) {
@@ -22,7 +23,8 @@ public class AutomaticMode implements GameMode {
                 gameController.incrementSuccessesWithFirstTryNumber();
             }
             gameController.changePhotosOrder();
-            gameController.changePhotosForAllDisplayedCategories(automaticGeneralization);
+            //gameController.changePhotosForAllDisplayedCategories(automaticGeneralization);
+            gameController.changePhotosForAllDisplayedCategories(isGeneralization);
         }
         gameController.incrementTriesNumber();
         successesNumber = gameController.getSuccessesWithFirstTryNumber();
@@ -41,13 +43,14 @@ public class AutomaticMode implements GameMode {
         int param = gameController.getAutomaticRepeats(); //to będzie do ustawienia
         if(successWithFirstTry && triesNumber >= param) {
             if (successesNumber == param && successesNumber == triesNumber) {
-                if(automaticGeneralization) {
+                gameController.changeCategoryToLearn();
+                /*if(automaticGeneralization) {
                     gameController.changeCategoryToLearn();
                     gameController.setAutomaticGeneralization(false);
                 } else {
                     gameController.setAutomaticGeneralization(true);
                     gameController.changePhotosForAllDisplayedCategories(automaticGeneralization);
-                }
+                }*/
             }
 
             gameController.setSuccessesWithFirstTryNumber(0);

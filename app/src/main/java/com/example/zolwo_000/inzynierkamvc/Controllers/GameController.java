@@ -93,6 +93,8 @@ public class GameController extends FController<GameModel> {
         return this.model.isGeneralization();
     }
 
+
+
     public GameMode getGameMode() {
         return GameModeFactory.getGameModeClass(this.model.getGameModeType());
     }

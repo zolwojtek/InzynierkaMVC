@@ -36,7 +36,7 @@ public class PreferencesManager {
         config.setHintType(shared.getString("hintType", "fade"));
         config.setDisplayCount(shared.getInt("displayCount", 3));
         config.setResponseTime(shared.getInt("responseTime", 5));
-        config.setLevel(shared.getString("level", "poziom1"));
+        config.setLevel(shared.getString("level", "level1"));
         config.setProportions(shared.getString("proportions", "1:0"));
         config.setGeneralization(shared.getBoolean("generalization", false));
         config.setAutomaticRepeats(shared.getInt("automaticRepeats",2));

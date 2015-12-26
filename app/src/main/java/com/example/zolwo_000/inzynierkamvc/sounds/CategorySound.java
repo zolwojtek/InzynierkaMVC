@@ -1,4 +1,4 @@
-package com.example.zolwo_000.inzynierkamvc.models;
+package com.example.zolwo_000.inzynierkamvc.sounds;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -17,6 +17,7 @@ import com.example.zolwo_000.inzynierkamvc.GameApplication;
 import com.example.zolwo_000.inzynierkamvc.UIBlocker;
 import com.example.zolwo_000.inzynierkamvc.Views.MainManuActivity;
 import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
+import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
 import com.example.zolwo_000.inzynierkamvc.sounds.SoundBase;
 
 import java.io.IOException;
@@ -69,7 +70,7 @@ public class CategorySound extends SoundBase {
         audioPath.moveToNext();
 
         Uri uri;
-        if (level == Level.LEVEL3 && audioPath.getString(1) == "") {
+        if (level == Level.LEVEL3 && !(audioPath.getString(1).equals(""))) {
             uri = Uri.parse(audioPath.getString(1));
         } else {
             uri = Uri.parse(audioPath.getString(0));

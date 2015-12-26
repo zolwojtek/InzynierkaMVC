@@ -2,12 +2,21 @@ package com.example.zolwo_000.inzynierkamvc.Views;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Matrix;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.view.MotionEventCompat;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.zolwo_000.inzynierkamvc.CorrectAnswerUIBlocker;
 import com.example.zolwo_000.inzynierkamvc.UIBlocker;
@@ -23,11 +32,20 @@ import com.example.zolwo_000.inzynierkamvc.models.PhotoModel;
 public class CorrectAnswerActivity extends Activity {
 
     private Activity activity = null;
+    private ImageView iv;
+    private Matrix matrix = new Matrix();
+    private float scale = 1f;
+    private ScaleGestureDetector SGD;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_correct_answer);
+
+        iv=(ImageView)findViewById(R.id.correctPhotoImageView);
+        SGD = new ScaleGestureDetector(this,new ScaleListener());
+
         activity = this;
 
         ImageButton nextTryImageButton = (ImageButton) activity.findViewById(R.id.nextTryImageButton);
@@ -53,11 +71,43 @@ public class CorrectAnswerActivity extends Activity {
         soundTubeImageButton.setOnClickListener(soundTubeClickListener);
         soundTubeImageButton.bringToFront();
 
-        GameController gameController = GameApplication.getGameController();
+        final GameController gameController = GameApplication.getGameController();
 
         GameMode gameMode = gameController.getGameMode();
         gameMode.setPlanForNextExercise();
+
+
     }
+
+
+    public boolean onTouchEvent(MotionEvent ev) {
+        SGD.onTouchEvent(ev);
+        return true;
+    }
+
+    private class ScaleListener extends ScaleGestureDetector.
+
+            SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            /*scale *= detector.getScaleFactor();
+            scale = Math.max(0.1f, Math.min(scale, 5.0f));
+
+            matrix.setScale(scale, scale);
+            iv.setImageMatrix(matrix);*/
+            GameController gameController = GameApplication.getGameController();
+            gameController.changeCategoryToLearn();
+            return true;
+        }
+    }
+
+
+
+
+
+
+
+
 
     private void playApplause(UIBlocker uiBlocker) {
         GameController gameController = GameApplication.getGameController();

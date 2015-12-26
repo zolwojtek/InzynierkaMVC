@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import com.example.zolwo_000.inzynierkamvc.UIBlocker;
 import com.example.zolwo_000.inzynierkamvc.enumerators.Level;
 import com.example.zolwo_000.inzynierkamvc.models.CategoryModel;
-import com.example.zolwo_000.inzynierkamvc.models.CategorySound;
 
 /**
  * Created by zolwo_000 on 18.11.2015.
